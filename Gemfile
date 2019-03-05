@@ -6,7 +6,7 @@ ruby '2.5.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -60,3 +60,23 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+#追加
+gem 'carrierwave' #画像のアップロード
+gem 'mini_magick' #画像ファイルのリサイズ
+
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'jquery-rails'
+
+gem 'kaminari' #ページャー機能
+
+gem 'paranoia' #削除フラグ
+
+gem 'devise'
+
+
+#デバック用
+gem 'pry-rails'
+
+

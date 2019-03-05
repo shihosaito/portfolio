@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  album_name: MyString
+  album_password: MyString
+  deleted_at: false
+
+two:
+  user_id: 1
+  album_name: MyString
+  album_password: MyString
+  deleted_at: false
