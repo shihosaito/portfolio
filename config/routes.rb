@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :albums
+  resources :photos
 
   namespace :admin do
     resources :users

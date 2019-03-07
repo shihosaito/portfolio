@@ -1,2 +1,19 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div>
+      <%= form_with model: @photo do |f| %>
+      <%= f.label :番号 %>
+      <%= f.number_field :image_number %>
+      <%= f.label :写真 %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :album_id, :value => params[:id] %>
+      <%= f.submit :登録 %>
+      <% end %>
+    </div>
+    <div>
+      <% @photos.each do |p| %>
+      <%= p.image_number %>
+      <% end %>
+    </div>
+  </div>
+</div>
