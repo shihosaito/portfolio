@@ -1,6 +1,9 @@
 <h1>Homes#index</h1>
 <p>Find me in app/views/homes/index.html.erb</p>
 
+<p><%= button_to "Try it for free!", home_guest_path %></p>
+<p><%= current_or_guest_user.name %></p>
+
 <p><%= link_to "新規 会員登録", new_user_registration_path %></p>
 <p><%= link_to "ログイン", new_user_session_path %></p>
 <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>

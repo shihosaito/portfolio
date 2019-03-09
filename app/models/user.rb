@@ -3,4 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :album
+  has_many :photos, through: :albums
+  has_many :comments
+
+  def self.move_to(user)
+    comments.update_all(user_id: user.id)
+  end
+
 end

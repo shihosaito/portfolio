@@ -78,5 +78,6 @@ gem 'devise'
 
 #デバック用
 gem 'pry-rails'
+gem 'pry-byebug'
 
 
