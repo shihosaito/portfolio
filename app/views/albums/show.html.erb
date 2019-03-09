@@ -13,6 +13,25 @@
     <div>
       <% @photos.each do |p| %>
       <%= p.image_number %>
+      <%= image_tag p.image.url %>
+      <% end %>
+    </div>
+    <div class="post_wrapper">
+      <% @comments.each do |comment| %>
+      <div>
+        <%= comment.user.name %>
+        <%= comment.comment_text %>
+      </div>
+      <% end %>
+
+    </div>
+    <div>
+      <%= form_with model: @comment do |f| %>
+      <%= f.label :コメント %>
+      <%= f.text_field :comment_text %>
+      <%= f.hidden_field :album_id, value: params[:id] %>
+      <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
+      <%= f.submit :投稿 %>
       <% end %>
     </div>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_081256) do
+ActiveRecord::Schema.define(version: 2019_03_08_042039) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_081256) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "room_id"
+    t.integer "album_id"
     t.string "comment_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_081256) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "guest", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

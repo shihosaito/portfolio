@@ -1,7 +1,9 @@
 class AlbumsController < ApplicationController
   def show
     @photo = Photo.new
-    @photos = Photo.where(params[:id])
+    @photos = Photo.where(album_id: params[:id])
+    @comment = Comment.new
+    @comments = Comment.where(album_id: params[:id])
   end
 
   def create

@@ -15,3 +15,22 @@
   //= require jquery
   //= require bootstrap-sprockets
   //= require_tree .
+
+
+$(function(){
+  $(document).on('click', 'input[type=submit]', function(){
+    //空のフォームを送信できないようにする
+    if ($('input[type=text]').val() == ''){
+      return false;
+    }
+  })
+  $(document).on('ajax:success', 'form', function(e){
+    console.log('-----始まり------');
+    console.log(e);
+    console.log('e.detail')
+    console.log(e.detail);
+    console.log('-----終わり------');
+    $('#comment_comment_text').val(''); //フォームを空にする
+    $('.post_wrapper').prepend('<div>' + e.detail[0].user.name +' '+ e.detail[0].comment.comment_text + '</div>');
+  })
+})

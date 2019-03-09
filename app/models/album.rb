@@ -1,7 +1,7 @@
 class Album < ApplicationRecord
 
   belongs_to :user
-  has_many :photos
-  has_many :rooms
+  has_many :photos, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'homes#index'
+  post 'home/guest' => 'homes#guest'
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
   resources :users
   resources :albums
   resources :photos
+  resources :comments
 
   namespace :admin do
     resources :users

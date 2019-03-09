@@ -5,8 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :album
-  has_many :rooms
-  has_many :users, through: :photos
-  has_many :users, through: :comments
+  has_many :photos, through: :albums
+  has_many :comments
+
+  def self.move_to(user)
+    comments.update_all(user_id: user.id)
+  end
 
 end
