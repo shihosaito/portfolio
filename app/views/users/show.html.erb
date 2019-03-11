@@ -8,7 +8,9 @@
       <%= f.label :アルバム名 %>
       <%= f.text_field :album_name %>
       <%= f.label :パスワード %>
-      <%= f.password_field :album_password %>
+      <%= f.password_field :password %>
+      <%= f.label :パスワード確認 %>
+      <%= f.password_field :password_confirmation %>
       <%= f.submit :アルバム作成 %>
       <% end %>
     </div>
@@ -16,14 +18,11 @@
       <% @albums.each do |album| %>
       <div>
         <%= album.album_name %>
-        <%= album.album_password %>
         <%= album.created_at %>
         <%= link_to "詳細", album_path(album.id) %>
       </div>
     <% end %>
-    <div>
-      
-    </div>
+
     </div>
   </div>
 </div>

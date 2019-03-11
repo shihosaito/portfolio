@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :guest_user?, :current_or_guest_user
+  include AlbumsHelper
 
   protected
   def configure_permitted_parameters
