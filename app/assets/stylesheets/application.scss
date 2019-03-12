@@ -15,3 +15,57 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+header {
+  width: 100%;
+
+}
+.header {
+  margin: 0 auto;
+  position: relative;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+}
+.howto_site {
+  float: left;
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+}
+.main_logo {
+  width: 240px;
+  height: 56px;
+  margin: auto;
+}
+.head_navi {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  padding-right: 30px;
+}
+.header li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 30px;
+  font-size: 25px;
+}
+
+
+.admin_back {
+
+}
+.main_back {
+  min-height: 700px;
+  background-color: #eaeaea;
+}
+
+
+
+
+
+
+
+
+
+
