@@ -1,23 +1,53 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
 
-<p><%= button_to "Try it for free!", home_guest_path %></p>
-<p><%= current_or_guest_user.name %></p>
+<%= render 'homes/header' %>
 
-<p><%= link_to "新規 会員登録", new_user_registration_path %></p>
-<p><%= link_to "ログイン", new_user_session_path %></p>
-<p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
-<p><%= link_to "ユーザー詳細 画面", user_path(1) %></p>
-<p><%= link_to "アルバム詳細 画面", album_path(1) %></p>
-<p></p>
-<p><%= link_to "管理者　ログイン", new_admin_session_path %></p>
-<p><%= link_to "管理者 ログアウト", destroy_admin_session_path, method: :delete %></p>
-<p><%= link_to "管理者　TOP画面", admin_users_path %></p>
-<p><%= link_to "管理者　会員詳細画面", admin_user_path(1) %></p>
-<p><%= link_to "管理者　アルバム詳細画面", admin_album_path(1) %></p>
+  <% if user_signed_in? %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 top_main_search">
+      <div class="main_search_title">
+        <h1>アルバムを見る</h1>
+      </div>
+      <div class="main_search_form">
+        <%= form_for(:album, url:albums_login_path) do |f| %>
+        <%= f.label :album_name, "アルバム名" %>
+        <%= f.text_field :album_name, required: true %>
+        <%= f.label :password_digest, "パスワード" %>
+        <%= f.password_field :password_digest, required: true %>
+        <%= f.submit "アルバムに入る", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <% else %>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2 top_main">
+        <div class="top_main_logo">
+          <%= image_tag 'top_main_logo.png' %>
+        </div>
+        <!-- ゲストとして使う -->
+        <div class="top_main_icon">
+          <div><%= link_to home_guest_path method: :post do %><%= image_tag 'top_main_icon1.png' %><% end %></div>
+        </div>
+        <!-- ログインして使う -->
+        <div class="top_main_icon">
+          <div><%= link_to new_user_session_path do %><%= image_tag 'top_main_icon2.png' %><% end %></div>
+        </div>
+        <!-- 新規会員登録 -->
+        <div class="top_main_icon">
+          <div><%= link_to new_user_registration_path do %><%= image_tag 'top_main_icon3.png' %><% end %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 
-<p>編集画面系はまだ</p>
 
 
 

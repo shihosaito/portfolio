@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :users
   resources :albums
+    post '/albums/login' => 'albums#login'
+    delete '/albums/logout' => 'albums#logout'
   resources :photos
   resources :comments
 

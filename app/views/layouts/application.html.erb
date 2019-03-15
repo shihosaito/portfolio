@@ -11,6 +11,21 @@
   </head>
 
   <body>
+
+  <% if admin_signed_in? %>
+    <div class="admin_back">
+  <% else %>
+    <div class="main_back">
+  <% end %>
     <%= yield %>
+  </div>
+
+    <footer>
+      <p><%= link_to "管理者　ログイン", new_admin_session_path %></p>
+      <p><%= link_to "管理者 ログアウト", destroy_admin_session_path, method: :delete %></p>
+      <p><%= link_to "管理者　TOP画面", admin_users_path %></p>
+      <p><%= link_to "管理者　会員詳細画面", admin_user_path(1) %></p>
+      <p><%= link_to "管理者　アルバム詳細画面", admin_album_path(1) %></p>
+    </footer>
   </body>
 </html>

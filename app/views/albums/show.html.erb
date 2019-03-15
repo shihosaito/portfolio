@@ -1,38 +1,45 @@
 <div class="container">
   <div class="row">
+    <!-- アルバムを作ったユーザーのみ写真を追加できる -->
+    <% if user_signed_in? && current_user.id == @album.user_id %>
     <div>
       <%= form_with model: @photo do |f| %>
-      <%= f.label :番号 %>
+      <%= f.label :image_number %>
       <%= f.number_field :image_number %>
-      <%= f.label :写真 %>
-      <%= f.file_field :image %>
+      <%= f.label :image %>
+      <%= f.file_field :image, required: true %>
       <%= f.hidden_field :album_id, :value => params[:id] %>
       <%= f.submit :登録 %>
       <% end %>
     </div>
-    <div>
+    <% end %>
+    <div class="col-md-7">
       <% @photos.each do |p| %>
+      <div>
       <%= p.image_number %>
       <%= image_tag p.image.url %>
-      <% end %>
-    </div>
-    <div class="post_wrapper">
-      <% @comments.each do |comment| %>
-      <div>
-        <%= comment.user.name %>
-        <%= comment.comment_text %>
       </div>
       <% end %>
-
     </div>
-    <div>
-      <%= form_with model: @comment do |f| %>
-      <%= f.label :コメント %>
-      <%= f.text_field :comment_text %>
-      <%= f.hidden_field :album_id, value: params[:id] %>
-      <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
-      <%= f.submit :投稿 %>
-      <% end %>
+    <div class="col-md-4">
+      <div class="post_wrapper">
+        <% @comments.each do |comment| %>
+        <div>
+          <%= comment.user.name %>
+          <%= comment.comment_text %>
+        </div>
+        <% end %>
+
+      </div>
+      <div>
+        <%= form_with class: "comment_form", model: @comment do |f| %>
+        <%= f.label :コメント %>
+        <%= f.text_field :comment_text %>
+        <%= f.hidden_field :album_id, value: params[:id] %>
+        <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
+        <%= f.submit :投稿, class: "comment_submit" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

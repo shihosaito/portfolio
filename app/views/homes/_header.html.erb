@@ -1,0 +1,48 @@
+    <header>
+      <div class="header">
+      <nav class="howto_site">
+        <li>使い方1</li>
+        <li>使い方2</li>
+        <li>使い方3</li>
+      </nav>
+      <div class="main_logo">
+        <%= image_tag 'main_logo.png' %>
+      </div>
+      <nav class="head_navi">
+        <% if user_signed_in? %>
+        <!-- アルバムを探す -->
+        <li>
+          <%#= link_to root_path do %>
+            <%#= image_tag 'navi_icon3.png' %>
+          <%# end %>
+        </li>
+        <!-- マイページ -->
+        <li>
+          <%= link_to user_path(current_user.id) do %>
+            <%= image_tag 'navi_icon3.png' %>
+          <% end %>
+        </li>
+        <!-- ログアウト -->
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <%= image_tag 'navi_icon4.png' %>
+          <% end %>
+        </li>
+
+        <% else %>
+        <!-- ログイン -->
+        <li>
+          <%= link_to new_user_session_path do %>
+            <%= image_tag 'navi_icon1.png' %>
+          <% end %>
+        </li>
+        <!-- 新規登録 -->
+        <li>
+          <%= link_to new_user_registration_path do %>
+            <%= image_tag 'navi_icon2.png' %>
+          <% end %>
+        </li>
+        <% end %>
+      </nav>
+      </div>
+    </header>

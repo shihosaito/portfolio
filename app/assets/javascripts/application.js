@@ -18,19 +18,19 @@
 
 
 $(function(){
-  $(document).on('click', 'input[type=submit]', function(){
+  $(document).on('click', '.comment_submit', function(){
     //空のフォームを送信できないようにする
-    if ($('input[type=text]').val() == ''){
+    if ($('[name="comment[comment_text]"]').val() == ''){
       return false;
     }
   })
-  $(document).on('ajax:success', 'form', function(e){
-    console.log('-----始まり------');
-    console.log(e);
-    console.log('e.detail')
-    console.log(e.detail);
-    console.log('-----終わり------');
+  $(document).on('ajax:success', '.comment_form', function(e){
+    // console.log('-----始まり------');
+    // console.log(e);
+    // console.log('e.detail')
+    // console.log(e.detail);
+    // console.log('-----終わり------');
     $('#comment_comment_text').val(''); //フォームを空にする
-    $('.post_wrapper').prepend('<div>' + e.detail[0].user.name +' '+ e.detail[0].comment.comment_text + '</div>');
+    $('.post_wrapper').append('<div>' + e.detail[0].user.name +' '+ e.detail[0].comment.comment_text + '</div>');
   })
 })

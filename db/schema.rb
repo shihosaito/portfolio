@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_03_08_042039) do
   create_table "albums", force: :cascade do |t|
     t.integer "user_id"
     t.string "album_name"
-    t.string "album_password"
+    t.string "password_digest", null: false
     t.boolean "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
