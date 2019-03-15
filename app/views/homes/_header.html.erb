@@ -12,9 +12,9 @@
         <% if user_signed_in? %>
         <!-- アルバムを探す -->
         <li>
-          <%#= link_to root_path do %>
-            <%#= image_tag 'navi_icon3.png' %>
-          <%# end %>
+          <%= link_to albums_path do %>
+            <%= image_tag 'navi_icon5.png' %>
+          <% end %>
         </li>
         <!-- マイページ -->
         <li>

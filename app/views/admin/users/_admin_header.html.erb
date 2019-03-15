@@ -1,0 +1,12 @@
+    <header>
+      <div class="header">
+      <div>
+        <p><%= image_tag 'main_logo.png' %>管理者</p>
+      </div>
+      <nav class="head_navi">
+        <li><%= link_to "登録ユーザー 一覧", admin_users_path %></li>
+        <li><%= link_to "アルバム 一覧", admin_albums_path %></li>
+        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+      </nav>
+      </div>
+    </header>
