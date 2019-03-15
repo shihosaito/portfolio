@@ -1,45 +1,66 @@
+
+<%= render 'homes/header' %>
+
 <div class="container">
   <div class="row">
+    <div>
+      <h1><%= @album.album_name %></h1>
+    </div>
+
     <!-- アルバムを作ったユーザーのみ写真を追加できる -->
     <% if user_signed_in? && current_user.id == @album.user_id %>
-    <div>
-      <%= form_with model: @photo do |f| %>
-      <%= f.label :image_number %>
-      <%= f.number_field :image_number %>
-      <%= f.label :image %>
-      <%= f.file_field :image, required: true %>
-      <%= f.hidden_field :album_id, :value => params[:id] %>
-      <%= f.submit :登録 %>
-      <% end %>
+    <div class="album_edit_box clearfix">
+      <div class="new_photo_box">
+        <%= form_with model: @photo do |f| %>
+        <%= f.label :image_number, "番号" %>
+        <%= f.number_field :image_number %><br>
+        <%= f.label :image, "写真" %>
+        <%= f.file_field :image, required: true %>
+        <%= f.hidden_field :album_id, :value => params[:id] %><br>
+        <%= f.submit :登録, class: "btn btn-default btn-block" %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to "アルバムの編集", edit_album_path %>
+      </div>
     </div>
     <% end %>
-    <div class="col-md-7">
+
+    <div class="col-md-8 album_photo_box">
       <% @photos.each do |p| %>
-      <div>
+      <div class="album_photo">
       <%= p.image_number %>
       <%= image_tag p.image.url %>
       </div>
       <% end %>
     </div>
-    <div class="col-md-4">
-      <div class="post_wrapper">
-        <% @comments.each do |comment| %>
-        <div>
-          <%= comment.user.name %>
-          <%= comment.comment_text %>
-        </div>
-        <% end %>
 
-      </div>
-      <div>
+    <div class="col-md-4 chat_box">
+      <div class="chat_comment">
         <%= form_with class: "comment_form", model: @comment do |f| %>
-        <%= f.label :コメント %>
-        <%= f.text_field :comment_text %>
+        <%= f.label :コメント %><br>
+        <%= f.text_area :comment_text, class: "form-control" %>
         <%= f.hidden_field :album_id, value: params[:id] %>
         <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
-        <%= f.submit :投稿, class: "comment_submit" %>
+        <%= f.submit "投稿", class: "btn btn-default btn-block" %>
         <% end %>
       </div>
+
+      <div class="comment_box">
+        <div class="post_wrapper">
+          <% @comments.each do |comment| %>
+          <div class="comment_text">
+            <strong><%= comment.user.name %>|<%= comment.user_id %></strong><br>
+            <%= comment.comment_text %>
+
+            <% if current_or_guest_user.id == comment.user_id %>
+            <%= link_to "削除", comment_path(comment.id), method: :delete %>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

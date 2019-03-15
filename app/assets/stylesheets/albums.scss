@@ -1,3 +1,56 @@
 // Place all the styles related to the albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.album_edit_box {
+  width: 100%;
+}
+.new_photo_box {
+  float: left;
+  border: 1px solid;
+  padding: 10px 40px;
+}
+
+
+
+
+.album_photo_box {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+.album_photo {
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  background-color: #d0d0d0;
+}
+
+
+
+
+.chat_box {
+  padding: 10px;
+  background-color: #d0d0d0;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.chat_comment {
+  padding: 3px 0 15px 0;
+}
+.chat_comment textarea {
+  margin-bottom: 5px;
+}
+.comment_box {
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
+  background-color: #d0d0d0;
+}
+.comment_text {
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background-color: #eaeaea;
+  width: 100%;
+  border-radius: 10px;
+}

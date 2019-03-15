@@ -9,6 +9,12 @@ class PhotosController < ApplicationController
     end
   end
 
+  def destroy
+    photo = Photo.find(params[:id])
+    photo.destroy
+    redirect_to edit_album_path(photo.album_id)
+  end
+
 
 
   private

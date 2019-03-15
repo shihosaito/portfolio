@@ -1,28 +1,32 @@
+
+<%= render 'homes/header' %>
+
 <div class="container">
   <div class="row">
-    <div style="background-color: orange">
-      <h1><%= @user.name %>さん ようこそ！</h1>
-    </div>
-    <div style="background-color: green">
-      <%= form_with model: @album do |f| %>
-      <%= f.label :アルバム名 %>
-      <%= f.text_field :album_name %>
-      <%= f.label :パスワード %>
-      <%= f.password_field :password %>
-      <%= f.label :パスワード確認 %>
-      <%= f.password_field :password_confirmation %>
-      <%= f.submit :アルバム作成 %>
-      <% end %>
-    </div>
-    <div style="background-color: yellow">
-      <% @albums.each do |album| %>
+    <div class="col-md-8 col-md-offset-2">
       <div>
-        <%= album.album_name %>
-        <%= album.created_at %>
-        <%= link_to "詳細", album_path(album.id) %>
+        <h1><%= @user.name %>さん ようこそ！</h1>
       </div>
-    <% end %>
-
+      <div class="new_album_box">
+        <%= form_with model: @album do |f| %>
+        <%= f.label :album_name, "アルバム名" %>
+        <%= f.text_field :album_name %><br>
+        <%= f.label :password, "パスワード" %>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation, "パスワード確認" %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.submit "アルバム作成" %>
+        <% end %>
+      </div>
+      <div class="user_albums">
+        <% @albums.each do |album| %>
+        <div class="user_album_box">
+          <%= album.album_name %><br>
+          <%= album.created_at %><br>
+          <%= link_to "詳細", album_path(album.id) %>
+        </div>
+      <% end %>
+      </div>
     </div>
   </div>
 </div>

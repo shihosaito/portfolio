@@ -16,6 +16,14 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+.clearfix {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+
+
 header {
   width: 100%;
 

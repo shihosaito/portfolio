@@ -11,6 +11,12 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    redirect_back(fallback_location: album_path)
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:user_id, :album_id, :comment_text)

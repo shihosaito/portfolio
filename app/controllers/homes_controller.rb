@@ -4,6 +4,6 @@ class HomesController < ApplicationController
 
   def guest
     guest_user
-    redirect_to root_path
+    redirect_to albums_path
   end
 end
