@@ -8,7 +8,7 @@ class AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @photo = Photo.new
-    @photos = Photo.where(album_id: params[:id])
+    @photos = Photo.where(album_id: params[:id]).order(:image_number)
     @comment = Comment.new
     @comments = Comment.where(album_id: params[:id]).reverse_order
   end
@@ -25,7 +25,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = Album.find(params[:id])
-    @photos = Photo.where(album_id: params[:id])
+    @photos = Photo.where(album_id: params[:id]).order(:image_number)
   end
 
   def update

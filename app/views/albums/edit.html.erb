@@ -4,21 +4,24 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <div>
-        <h1>アルバム　編集
-        <%= link_to "アルバムを削除する", album_path(@album.id), method: :delete, class: "btn btn-default" %>
-        <%= link_to "アルバムに戻る", album_path(@album.id), class: "btn btn-default" %></h1>
+
+      <div class="album_edit_title">
+        <h2><%= @album.album_name %>｜編集</h2>
+        <div class="album_edit_title_btn">
+        <%= link_to "アルバムを削除する", album_path(@album.id), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "アルバムに戻る", album_path(@album.id), class: "btn btn-info" %>
+        </div>
       </div>
-      <div>
-        <h2>アルバム詳細　変更</h2>
-        <%= form_with method: @album do |f| %>
+      <div class="album_details_box">
+        <h3>アルバム詳細　変更</h3>
+        <%= form_with model: @album do |f| %>
           <%= f.label :album_name, "アルバム名" %>
           <%= f.text_field :album_name %><br>
           <%= f.label :password, "パスワード" %>
           <%= f.password_field :password %>
           <%= f.label :password_confirmation, "パスワード確認" %>
           <%= f.password_field :password_confirmation %>
-          <%= f.submit "変更", class: "btn btn-default" %>
+          <%= f.submit "変更", class: "btn btn-success" %>
         <% end %>
       </div>
       <div>
@@ -34,18 +37,17 @@
           <tbody>
             <% @photos.each do |photo| %>
               <tr>
-                <%= form_with method: photo do |f| %>
+                <%= form_with model: photo do |f| %>
                   <th>
-                    <%= photo.image_number %>
                     <%= f.number_field :image_number %>
                   </th>
                   <td>
-                    <%= image_tag photo.image.url %>
+                    <%= image_tag(photo.image.url(:thumb)) %>
                     <%= f.file_field :image, required: true %>
                   </td>
                   <%= f.hidden_field :album_id, :value => params[:id] %>
-                  <td><%= f.submit "変更", class: "btn btn-default" %></td>
-                  <td><%= link_to "削除", photo_path(photo.id), method: :delete, class: "btn btn-default" %></td>
+                  <td><%= f.submit "変更", class: "btn btn-success" %></td>
+                  <td><%= link_to "削除", photo_path(photo.id), method: :delete, class: "btn btn-danger" %></td>
                 <% end %>
               </tr>
             <% end %>

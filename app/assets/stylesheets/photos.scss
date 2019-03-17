@@ -1,3 +1,25 @@
 // Place all the styles related to the Photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo_show {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #0000006e;
+  color: #fff;
+  padding: 100px;
+  display: none;
+  padding: 25px;
+  width: 60%;
+  height: 100%;
+  margin: 100px 30px;
+  text-align: center;
+}
+.open_close_text {
+  background-color: red;
+  text-align: center;
+  flood-color: white;
+  float: right;
+  /*display: none;*/
+}

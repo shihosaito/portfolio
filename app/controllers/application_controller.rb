@@ -1,11 +1,13 @@
 class ApplicationController < ActionController::Base
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
   def after_sign_in_path_for(resource)
     case resource
     when Admin
       admin_users_path
     when User
-      albums_path
+      user_path(resource.id)
     end
   end
 
@@ -14,14 +16,12 @@ class ApplicationController < ActionController::Base
     when Admin
       admin_users_path
     when User
-      albums_path
+      user_path(resource.id)
     end
   end
 
-
   helper_method :guest_user?, :current_or_guest_user
   include AlbumsHelper
-
 
   protected
   def configure_permitted_parameters

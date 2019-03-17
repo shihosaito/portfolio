@@ -17,6 +17,7 @@
   //= require_tree .
 
 
+// チャット
 $(function(){
   $(document).on('click', '.comment_submit', function(){
     //空のフォームを送信できないようにする
@@ -27,10 +28,25 @@ $(function(){
   $(document).on('ajax:success', '.comment_form', function(e){
     // console.log('-----始まり------');
     // console.log(e);
-    // console.log('e.detail')
-    // console.log(e.detail);
     // console.log('-----終わり------');
     $('#comment_comment_text').val(''); //フォームを空にする
-    $('.post_wrapper').prepend('<div>' + e.detail[0].user.name +' '+ e.detail[0].comment.comment_text + '</div>');
+    $('.post_wrapper').prepend('<div class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<%= link_to "削除", comment_path(comment.id), method: :delete %>' + '</div>');
   })
 })
+
+
+// 写真の拡大表示・閉じる
+$(function(){
+  $('.photo_open_close').on('click', function(){
+    $('this').toggleClass('activ');
+    $('.photo_show').fadeToggle();
+  });
+});
+
+
+
+
+
+
+
+

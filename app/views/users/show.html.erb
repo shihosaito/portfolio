@@ -4,21 +4,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
-      <div>
-        <h1><%= @user.name %>さん ようこそ！</h1>
+      <div class="user_show_title">
+        <h2><%= @user.name %>さん ようこそ！</h2>
+        <div class="user_show_title_btn">
+        <%= link_to "登録情報の編集", edit_user_registration_path(@user.id), class: "btn btn-info" %>
+        </div>
       </div>
       <div class="new_album_box">
-        <%= form_with model: @album do |f| %>
-        <%= f.label :album_name, "アルバム名" %>
-        <%= f.text_field :album_name %><br>
-        <%= f.label :password, "パスワード" %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation, "パスワード確認" %>
-        <%= f.password_field :password_confirmation %>
-        <%= f.submit "アルバム作成" %>
-        <% end %>
+        <div class="new_album_box_title">
+          <p><%= image_tag 'user_point.png', size: "25x25" %><strong>新しいアルバムを作る</strong></p>
+        </div>
+        <div class="new_album_box_form">
+          <%= form_with model: @album do |f| %>
+          <%= f.label :album_name, "アルバム名" %>
+          <%= f.text_field :album_name %><br>
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password %>
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <%= f.password_field :password_confirmation %>
+          <%= f.submit "アルバム作成", class: "btn btn-success" %>
+          <% end %>
+        </div>
       </div>
       <div class="user_albums">
+        <div class="user_albums_title"><p><%= image_tag 'user_point.png', size: "25x25" %><strong>アルバム 一覧</strong></div>
         <% @albums.each do |album| %>
         <div class="user_album_box">
           <%= album.album_name %><br>
