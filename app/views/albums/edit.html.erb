@@ -6,7 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
 
       <div class="album_edit_title">
-        <h2><%= @album.album_name %>｜編集</h2>
+        <h2><%= @album.album_name %>｜編集<%= flash[:notice] %></h2>
         <div class="album_edit_title_btn">
         <%= link_to "アルバムを削除する", album_path(@album.id), method: :delete, class: "btn btn-danger" %>
         <%= link_to "アルバムに戻る", album_path(@album.id), class: "btn btn-info" %>

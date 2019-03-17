@@ -1,9 +1,6 @@
 class AlbumsController < ApplicationController
 
-
-
-  def index
-  end
+before_action :authenticate_user! only:[:create, :edit, :update, :destroy]
 
   def show
     @album = Album.find(params[:id])
@@ -18,8 +15,10 @@ class AlbumsController < ApplicationController
     album.user_id = current_user.id
     if album.save
       redirect_to album_path(album.id)
+      flash[:notice] = "新しいアルバムを作成しました"
     else
-      redirect_back(fallback_location: root_path)
+      redirect_back(fallback_location: user_path)
+      flash[:notice] = "入力に誤りがあります"
     end
   end
 
@@ -33,8 +32,10 @@ class AlbumsController < ApplicationController
     if album.user_id == current_user.id
       album.update(album_params)
       redirect_to edit_album_path(album.id)
+      flash[:notice] = "アルバム詳細を変更しました"
     else
-      redirect_to root_path
+      redirect_to edit_album_path(album.id)
+      flash[:notice] = "入力に誤りがあります"
     end
   end
 
@@ -42,6 +43,7 @@ class AlbumsController < ApplicationController
     album = Album.find(params[:id])
     album.destroy
     redirect_to user_path(current_user.id)
+    flash[:notice] = "アルバムを削除しました"
   end
 
 

@@ -8,6 +8,9 @@ class CommentsController < ApplicationController
       respond_to do |f|
         f.json { render json: {comment:comment, user: user}}
       end
+    else
+      redirect_back(fallback_location: album_path)
+      flash[:notice] = "コメントを投稿できませんでした"
     end
   end
 
@@ -15,6 +18,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     comment.destroy
     redirect_back(fallback_location: album_path)
+    flash[:notice] = "コメントを削除しました"
   end
 
   private

@@ -4,11 +4,11 @@
 <div class="container">
   <div class="row">
     <div>
-      <h2><%= @album.album_name %></h2>
+      <h2><%= @album.album_name %><%= flash[:notice] %></h2>
     </div>
     <div class="col-md-8 album_photo_box">
       <% @photos.each do |photo| %>
-        <div class="photo_show">
+        <div class="photo_show_js">
           <div class="photo_open_close">
             <p class="open_close_text">閉じる</p>
           </div>

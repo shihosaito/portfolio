@@ -39,7 +39,7 @@ $(function(){
 $(function(){
   $('.photo_open_close').on('click', function(){
     $('this').toggleClass('activ');
-    $('.photo_show').fadeToggle();
+    $('.photo_show_js').fadeToggle();
   });
 });
 

@@ -12,9 +12,6 @@ class Admin::AlbumsController < ApplicationController
     @comments = Comment.where(album_id: params[:id])
   end
 
-  def edit
-  end
-
   def update
     album = Album.find(params[:id])
     album.update
