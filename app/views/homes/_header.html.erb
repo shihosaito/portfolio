@@ -30,6 +30,13 @@
         </li>
 
         <% else %>
+
+        <!-- アルバムを探す -->
+        <li>
+          <%= link_to albums_path do %>
+            <%= image_tag 'navi_icon6.png' %>
+          <% end %>
+        </li>
         <!-- ログイン -->
         <li>
           <%= link_to new_user_session_path do %>

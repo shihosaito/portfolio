@@ -27,22 +27,23 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-    #devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
 
   def current_or_guest_user
     if current_user
-      if session[:guest_user] && session[:guest_user] != current_user.id
+      if session[:guest_user_id] && session[:guest_user_id] != current_user.id
         logging_in
         guest_user(with_retry = false).try(:reload).try(:destroy)
-        session[:guest_user] = nil
+        session[:guest_user_id] = nil
       end
       current_user
     else
       guest_user
     end
   end
+
 
   # 現在のセッションと関連づくguest_user オブジェクトを探す
   def guest_user(with_retry = true)
@@ -54,6 +55,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logging_in
+    # comments = Comment.where(guest_user.id)
+    # comments.each do |comment|
+    #   comment.user_id = current_user.id
+    #   comment.save!
+    # end
     guest_user.move_to(current_user)
   end
 

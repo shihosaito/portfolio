@@ -24,7 +24,7 @@
     </div>
 
     <div class="col-md-4">
-      <!-- アルバムを作ったユーザーのみ写真を追加できる -->
+      <!-- アルバムを作ったユーザーのみ写真を追加・編集できる -->
     <% if user_signed_in? && current_user.id == @album.user_id %>
     <div class="album_edit_box clearfix">
       <div class="new_photo_box">
@@ -34,7 +34,7 @@
         <div class="new_photo_box_form">
           <%= form_with model: @photo do |f| %>
           <%= f.label :image_number, "番号" %>
-          <%= f.number_field :image_number %><br>
+          <%= f.number_field :image_number, min: 1 , required: true %><br>
           <%= f.label :image, "写真" %>
           <%= f.file_field :image, required: true %>
           <%= f.hidden_field :album_id, :value => params[:id] %><br>
@@ -47,11 +47,13 @@
       </div>
     </div>
     <% end %>
+
+    <!-- チャット -->
     <div class="chat_box">
       <div class="chat_comment">
         <%= form_with class: "comment_form", model: @comment do |f| %>
-        <%= f.label :comment_text, "コメント" %><br>
-        <%= f.text_area :comment_text, class: "form-control" %>
+        <%= f.label :comment_text, "コメント（最大200文字）" %><br>
+        <%= f.text_area :comment_text, required: true, class: "form-control" %>
         <%= f.hidden_field :album_id, value: params[:id] %>
         <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
         <%= f.submit "投稿", class: "btn btn-success btn-block" %>
@@ -63,7 +65,6 @@
           <% @comments.each do |comment| %>
           <div class="comment_text">
             <strong><%= comment.user.name %>
-              <!-- |<%= comment.user_id %> -->
               </strong><br>
             <%= comment.comment_text %>
 

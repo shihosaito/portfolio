@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 
-before_action :authenticate_user! only:[:create, :edit, :update, :destroy]
+ before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
 
   def show
     @album = Album.find(params[:id])
@@ -49,7 +49,7 @@ before_action :authenticate_user! only:[:create, :edit, :update, :destroy]
 
 
   def login
-    album = Album.find_by(album_name: params[:album][:album_name])
+    album = Album.find_by(album_name: params[:album][:album_name], user_id: params[:album][:user_id])
     if album && album.authenticate(params[:album][:password_digest])
       #authenticate paramsで持ってきたデータと一致してるかみる
       album_log_in album

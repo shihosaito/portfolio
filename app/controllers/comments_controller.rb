@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
   def create
-    comment = Comment.new(comment_params)
+    # comment = Comment.new(comment_params)
+    comment = current_or_guest_user.comments.create!(comment_params)
     user = User.find(comment.user_id)
     if comment.save
     #render json: comment.comment_text

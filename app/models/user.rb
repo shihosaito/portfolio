@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :photos, through: :albums
   has_many :comments
 
-  def self.move_to(user)
+  def move_to(user)
     comments.update_all(user_id: user.id)
   end
 
