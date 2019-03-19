@@ -18,8 +18,9 @@ class CommentsController < ApplicationController
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy
-    redirect_back(fallback_location: album_path)
-    flash[:notice] = "コメントを削除しました"
+    # redirect_back(fallback_location: album_path)
+    # flash[:notice] = "コメントを削除しました"
+    render json: comment
   end
 
   private

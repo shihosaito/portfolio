@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :photos, through: :albums
   has_many :comments
 
+  acts_as_paranoid
+
   def move_to(user)
     comments.update_all(user_id: user.id)
   end

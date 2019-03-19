@@ -3,20 +3,37 @@
 
 <div class="container">
   <div class="row">
-    <div>
-      <h2>ユーザー　詳細</h2>
-    </div>
-    <div>
-      <%= @user.name %>
-      <%= @user.email %>
-      <%= link_to "ユーザー情報の編集", edit_admin_user_path(@user.id), class: "btn btn-default" %>
-    </div>
-    <% @albums.each do |album| %>
-      <div>
-       <%= album.album_name %>
-       <%= album.created_at %>
-       <%= link_to "アルバムの中を見る", admin_album_path(album.id), class: "btn btn-default" %>
+    <div class="col-md-8 col-md-offset-2">
+      <div class="user_show_title">
+        <h2>ユーザー　詳細</h2>
       </div>
-    <% end %>
+      <div class="admin_user_box">
+        <nav class="user_box">
+          <li>名前 |</li>
+          <li>email |</li>
+        </nav>
+        <nav class="user_box">
+          <li><%= @user.name %></li>
+          <li><%= @user.email %></li>
+        </nav>
+        <%= link_to "ユーザー情報の編集", edit_admin_user_path(@user.id), class: "btn btn-success" %>
+      </div>
+      <div>
+        <div class="admin_album_title"><h3>アルバム 一覧</h3></div>
+        <% @albums.each do |album| %>
+          <div class="admin_album_box">
+            <nav class="album_box">
+              <li>ID |</li>
+              <li>作成 日時 |</li>
+            </nav>
+            <nav class="album_box">
+              <li><%= album.album_name %></li>
+              <li><%= album.created_at %></li>
+            </nav>
+            <%= link_to "アルバムの中を見る", admin_album_path(album.id), class: "btn btn-default" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ class Admin::AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @photos = Photo.where(album_id: params[:id])
-    @comments = Comment.where(album_id: params[:id])
+    @comments = Comment.where(album_id: params[:id]).reverse_order
   end
 
   def update

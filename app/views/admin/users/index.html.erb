@@ -3,13 +3,19 @@
 
 <div class="container">
   <div class="row">
-    <div>
+    <div class="admin_user_index">
+      <div class="admin_user_index_title">
+        <%= flash[:notice] %>
+        <h2>登録ユーザー　一覧</h2>
+      </div>
       <table class="table table-striped">
         <thead>
           <tr>
             <th>id</th>
             <th>名前</th>
             <th>詳細ページ</th>
+            <th>登録日時</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -17,10 +23,13 @@
             <tr>
             <td><%= user.id %></td>
             <td><%= user.name %></td>
-            <td><% unless user.name == "guest" %>
+            <td><% if user.guest == false %>
               <%= link_to "詳細", admin_user_path(user.id), class: "btn btn-default" %>
-              <% end %>
-            </td>
+              <% end %></td>
+            <td><%= user.created_at %></td>
+            <td><% if user.guest == true %>
+              <%= link_to "削除", admin_user_path(user.id), method: :delete, class: "btn btn-danger" %>
+              <% end %></td>
             </tr>
           <% end %>
         </tbody>

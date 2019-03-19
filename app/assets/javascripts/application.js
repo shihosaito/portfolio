@@ -27,10 +27,18 @@ $(function(){
   })
   $(document).on('ajax:success', '.comment_form', function(e){
     // console.log('-----始まり------');
-    // console.log(e);
+    console.log(e);
     // console.log('-----終わり------');
     $('#comment_comment_text').val(''); //フォームを空にする
-    $('.post_wrapper').prepend('<div class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<%= link_to "削除", comment_path(comment.id), method: :delete %>' + '</div>');
+    $('.post_wrapper').prepend('<div class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<p>削除</p>' + '</div>');
+  })
+})
+
+// コメント削除
+$(function(){
+  $(document).on('ajax:success', '.comment_delete', function(e){
+    console.log(e)
+    $(this).closest('.post_wrapper').remove();
   })
 })
 

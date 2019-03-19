@@ -22,9 +22,13 @@
   content: "";
 }
 
-
+/*ユーザー側ヘッダー*/
 
 header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index:24;
   width: 100%;
 
 }
@@ -60,12 +64,24 @@ header {
 }
 
 
-.admin_back {
+/*管理者側のヘッダー*/
 
+.admin_head {
+  background-color: #cccccc;
+}
+
+
+
+/*メイン背景*/
+
+.admin_back {
+  padding-top: 110px;
+  min-height: 700px;
 }
 .main_back {
   min-height: 700px;
   background-color: #eaeaea;
+  padding-top: 100px;
 }
 
 .footer {

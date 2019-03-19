@@ -44,7 +44,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   # 現在のセッションと関連づくguest_user オブジェクトを探す
   def guest_user(with_retry = true)
     @cached_guest_user ||= User.find(session[:guest_user_id] ||= create_guest_user.id)
@@ -60,12 +59,13 @@ class ApplicationController < ActionController::Base
     #   comment.user_id = current_user.id
     #   comment.save!
     # end
+    guest_user.guest = false
     guest_user.move_to(current_user)
   end
 
   def create_guest_user
-    u = User.new(name: "guest", email: "guest_#{Time.now.to_i}#{rand(100)}@example.com" )
-    u.save!(validate: false)
+    u = User.new(name: "guest", email: "guest_#{Time.now.to_i}#{rand(100)}@example.com", guest: true )
+    u.save!(validate: false) #バリデーションを外す
     session[:guest_user_id] = u.id
     u
   end

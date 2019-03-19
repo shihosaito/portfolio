@@ -64,12 +64,13 @@
         <div class="post_wrapper">
           <% @comments.each do |comment| %>
           <div class="comment_text">
-            <strong><%= comment.user.name %>
+            <% user = User.with_deleted.find(comment.user_id) %>
+            <strong><%= user.name %>
               </strong><br>
             <%= comment.comment_text %>
 
             <% if current_or_guest_user.id == comment.user_id %>
-            <%= link_to "削除", comment_path(comment.id), method: :delete %>
+            <%= link_to "削除", comment_path(comment.id), method: :delete, class: "comment_delete", remote: true %>
             <% end %>
           </div>
           <% end %>
