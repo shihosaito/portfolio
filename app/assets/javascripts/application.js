@@ -38,8 +38,9 @@ $(function(){
 // 写真の拡大表示・閉じる
 $(function(){
   $('.photo_open_close').on('click', function(){
-    $('this').toggleClass('activ');
-    $('.photo_show_js').fadeToggle();
+    $(this).toggleClass('active');
+    var photoid = $(this).data('photoid');
+    $(`.photo_show_js[data-photoid="${photoid}"]`).fadeToggle();
   });
 });
 

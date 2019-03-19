@@ -2,10 +2,44 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
 /*アルバム詳細ページ*/
 
-/*写真追加・アルバム編集ページのボタン*/
+.album_show {
+  margin: 0 10%;
+}
+.album_title {
 
+}
+
+/*アルバム詳細ページ　左側*/
+
+.album_show_box {
+  display: flex;
+}
+
+.album_photo_box {
+  flex-shrink: 2;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 0px 10px 25px 0;
+}
+.album_photo {
+  flex-shrink: 1;
+  margin: 5px;
+  padding: 5px;
+  background-color: #d0d0d0;
+}
+
+/*ーーーーーーーーーーーーーーーー
+/*アルバム詳細ページ　右側*/
+
+.album_comments_box {
+  flex-shrink: 1;
+}
+/*写真追加・アルバム編集ボタン*/
 .album_edit_box {
   width: 100%;
 }
@@ -30,21 +64,7 @@
   margin: 0 15px;
 }
 
-/*写真表示*/
-
-.album_photo_box {
-  margin-top: 10px;
-  margin-bottom: 25px;
-}
-.album_photo {
-  float: left;
-  margin: 5px;
-  padding: 5px;
-  background-color: #d0d0d0;
-}
-
 /*チャット*/
-
 .chat_box {
   padding: 10px;
   background-color: #d0d0d0;
@@ -71,30 +91,7 @@
   border-radius: 10px;
 }
 
-/*ーーーーーーーーーーーーーーーーーー*/
-
-
-/*アルバム編集ページ*/
-
-.album_edit_title {
-  position: relative;
-  border-bottom: 2px dashed #9e9e9e;
-
-}
-.album_edit_title_btn {
-  position: absolute;
-  right: 0;
-  bottom: 8px;
-}
-
-.album_details_box {
-  border-bottom: 2px dashed #9e9e9e;
-  padding-bottom: 15px;
-  margin-bottom: 10px;
-}
-
-/*ーーーーーーーーーーーーーーーーーー*/
-
+/*ーーーーーーーーーーーーーーーー*/
 
 
 
