@@ -19,7 +19,7 @@
 
 // チャット
 $(function(){
-  $(document).on('click', '.comment_submit', function(){
+  $(document).on('click', '.comment_submit', function(e){
     //空のフォームを送信できないようにする
     if ($('[name="comment[comment_text]"]').val() == ''){
       return false;
@@ -30,22 +30,23 @@ $(function(){
     console.log(e);
     // console.log('-----終わり------');
     $('#comment_comment_text').val(''); //フォームを空にする
-    $('.post_wrapper').prepend('<div class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<p>削除</p>' + '</div>');
+    $('.post_wrapper').prepend('<div class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ e.detail[0].comment.id +'">削除</a></div>');
   })
 })
 
+
 // コメント削除
 $(function(){
-  $(document).on('ajax:success', '.comment_delete', function(e){
+  $('.comment_delete').on('ajax:success', function(e){
     console.log(e)
-    $(this).closest('.post_wrapper').remove();
+    $(this).closest('.comment_text').remove();
   })
 })
 
 
 // 写真の拡大表示・閉じる
 $(function(){
-  $('.photo_open_close').on('click', function(){
+  $('.photo_open_close').on('click', function(e){
     $('this').toggleClass('activ');
     $('.photo_show_js').fadeToggle();
   });

@@ -6,8 +6,10 @@
     <div>
       <h2><%= @album.album_name %><%= flash[:notice] %></h2>
     </div>
+    <!-- 写真の表示 -->
     <div class="col-md-8 album_photo_box">
       <% @photos.each do |photo| %>
+        <!-- 拡大表示部分 -->
         <div class="photo_show_js">
           <div class="photo_open_close">
             <p class="open_close_text">閉じる</p>
@@ -16,6 +18,7 @@
             <%= image_tag photo.image.url %>
           </div>
         </div>
+        <!-- 一覧表示部分 -->
       <div class="photo_open_close album_photo">
           <%= photo.image_number %>
           <%= image_tag(photo.image.url(:thumb)) %>
@@ -24,7 +27,7 @@
     </div>
 
     <div class="col-md-4">
-      <!-- アルバムを作ったユーザーのみ写真を追加・編集できる -->
+    <!-- アルバムを作ったユーザーのみ写真を追加・編集できる -->
     <% if user_signed_in? && current_user.id == @album.user_id %>
     <div class="album_edit_box clearfix">
       <div class="new_photo_box">
