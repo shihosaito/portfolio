@@ -1,86 +1,87 @@
 
 <%= render 'homes/header' %>
 
-<div class="container">
-  <div class="row">
-    <div>
+<div class="album_show">
+    <div class="album_title">
       <h2><%= @album.album_name %><%= flash[:notice] %></h2>
     </div>
+
     <!-- 写真の表示 -->
-    <div class="col-md-8 album_photo_box">
-      <% @photos.each do |photo| %>
-        <!-- 拡大表示部分 -->
-        <div class="photo_show_js">
-          <div class="photo_open_close">
-            <p class="open_close_text">閉じる</p>
+    <div class="album_show_box">
+      <div class="album_photo_box">
+        <% @photos.each do |photo| %>
+          <!-- 拡大表示部分 -->
+          <div data-photoid="<%= photo.id %>" class="photo_show_js">
+            <div data-photoid="<%= photo.id %>" class="photo_open_close">
+              <p class="open_close_text">閉じる</p>
+            </div>
+            <div class="photo_show_image">
+              <%= image_tag photo.image.url %>
+            </div>
           </div>
-          <div class="photo_show_image">
-            <%= image_tag photo.image.url %>
+          <!-- 一覧表示部分 -->
+          <div data-photoid="<%= photo.id %>" class="photo_open_close album_photo">
+            <%= photo.image_number %>
+            <%= image_tag(photo.image.url(:thumb)) %>
           </div>
-        </div>
-        <!-- 一覧表示部分 -->
-      <div class="photo_open_close album_photo">
-          <%= photo.image_number %>
-          <%= image_tag(photo.image.url(:thumb)) %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="col-md-4">
-    <!-- アルバムを作ったユーザーのみ写真を追加・編集できる -->
-    <% if user_signed_in? && current_user.id == @album.user_id %>
-    <div class="album_edit_box clearfix">
-      <div class="new_photo_box">
-        <div class="new_photo_box_title">
-          <p><%= image_tag 'user_point.png', size: "25x25" %><strong>新しい写真を追加する</strong></p>
-        </div>
-        <div class="new_photo_box_form">
-          <%= form_with model: @photo do |f| %>
-          <%= f.label :image_number, "番号" %>
-          <%= f.number_field :image_number, min: 1 , required: true %><br>
-          <%= f.label :image, "写真" %>
-          <%= f.file_field :image, required: true %>
-          <%= f.hidden_field :album_id, :value => params[:id] %><br>
-          <%= f.submit :登録, class: "btn btn-success btn-block" %>
-          <% end %>
-        </div>
-        <div class="new_photo_box_btn">
-          <%= link_to "アルバムの編集", edit_album_path,class: "btn btn-info btn-block" %>
-        </div>
       </div>
-    </div>
-    <% end %>
 
-    <!-- チャット -->
-    <div class="chat_box">
-      <div class="chat_comment">
-        <%= form_with class: "comment_form", model: @comment do |f| %>
-        <%= f.label :comment_text, "コメント（最大200文字）" %><br>
-        <%= f.text_area :comment_text, required: true, class: "form-control" %>
-        <%= f.hidden_field :album_id, value: params[:id] %>
-        <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
-        <%= f.submit "投稿", class: "btn btn-success btn-block" %>
+      <div class="album_comments_box">
+        <!-- アルバムを作ったユーザーのみ写真を追加・編集できる -->
+        <% if user_signed_in? && current_user.id == @album.user_id %>
+        <div class="album_edit_box">
+          <div class="new_photo_box">
+            <div class="new_photo_box_title">
+              <p><%= image_tag 'user_point.png', size: "25x25" %><strong>新しい写真を追加する</strong></p>
+            </div>
+            <div class="new_photo_box_form">
+              <%= form_with model: @photo do |f| %>
+              <%= f.label :image_number, "番号" %>
+              <%= f.number_field :image_number, min: 1 , required: true %><br>
+              <%= f.label :image, "写真" %>
+              <%= f.file_field :image, required: true %>
+              <%= f.hidden_field :album_id, :value => params[:id] %><br>
+              <%= f.submit :登録, class: "btn btn-success btn-block" %>
+              <% end %>
+            </div>
+            <div class="new_photo_box_btn">
+              <%= link_to "アルバムの編集", edit_album_path,class: "btn btn-info btn-block" %>
+            </div>
+          </div>
+        </div>
         <% end %>
-      </div>
 
-      <div class="comment_box">
-        <div class="post_wrapper">
-          <% @comments.each do |comment| %>
-          <div class="comment_text">
-            <% user = User.with_deleted.find(comment.user_id) %>
-            <strong><%= user.name %>
-              </strong><br>
-            <%= comment.comment_text %>
-
-            <% if current_or_guest_user.id == comment.user_id %>
-            <%= link_to "削除", comment_path(comment.id), method: :delete, class: "comment_delete", remote: true %>
+        <!-- チャット -->
+        <div class="chat_box">
+          <!-- チャット新規投稿 -->
+          <div class="chat_comment">
+            <%= form_with class: "comment_form", model: @comment do |f| %>
+            <%= f.label :comment_text, "コメント（最大200文字）" %><br>
+            <%= f.text_area :comment_text, required: true, class: "form-control" %>
+            <%= f.hidden_field :album_id, value: params[:id] %>
+            <%= f.hidden_field :user_id, value: current_or_guest_user.id %>
+            <%= f.submit "投稿", class: "btn btn-success btn-block" %>
             <% end %>
           </div>
-          <% end %>
+          <!-- 投稿コメント一覧 -->
+          <div class="comment_box">
+            <div class="post_wrapper">
+              <% @comments.each do |comment| %>
+                <div class="comment_text">
+                  <% user = User.with_deleted.find(comment.user_id) %>
+                  <strong><%= user.name %></strong><br>
+                  <%= comment.comment_text %>
+
+                  <% if current_or_guest_user.id == comment.user_id %>
+                  <%= link_to "削除", comment_path(comment.id), method: :delete, class: "comment_delete", remote: true %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
-      </div>
+
       </div>
 
     </div>
-  </div>
 </div>
