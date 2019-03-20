@@ -1,38 +1,13 @@
-
-<%= render 'homes/header' %>
-
-  <% if user_signed_in? %>
-
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2 top_main_search">
-      <div class="main_search_title">
-        <h1>アルバムを見る</h1>
-      </div>
-      <div class="main_search_form">
-        <%= form_for(:album, url:albums_login_path) do |f| %>
-        <%= f.label :album_name, "アルバム名" %>
-        <%= f.text_field :album_name, required: true %>
-        <%= f.label :password_digest, "パスワード" %>
-        <%= f.password_field :password_digest, required: true %>
-        <%= f.submit "アルバムに入る", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-  <% else %>
-
-<div class="container">
-  <div class="row">
-      <div class="col-md-8 col-md-offset-2 top_main">
+    <div class="col-md-8 col-md-offset-2 top_main">
+      <div class="top_main_mask">
         <div class="top_main_logo">
           <%= image_tag 'top_main_logo.png' %>
         </div>
         <!-- ゲストとして使う -->
         <div class="top_main_icon">
-          <div><%= link_to home_guest_path method: :post do %><%= image_tag 'top_main_icon1.png' %><% end %></div>
+          <div><%= link_to home_guest_path, method: :post do %><%= image_tag 'top_main_icon1.png' %><% end %></div>
         </div>
         <!-- ログインして使う -->
         <div class="top_main_icon">
@@ -43,7 +18,7 @@
           <div><%= link_to new_user_registration_path do %><%= image_tag 'top_main_icon3.png' %><% end %></div>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 

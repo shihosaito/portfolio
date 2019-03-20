@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admin_users_path
-    when
-      user_path(current_user)
+    when User
+      user_path(resource.id)
     end
   end
 
@@ -15,30 +15,28 @@ class ApplicationController < ActionController::Base
     case resource
     when Admin
       admin_users_path
-    when
-      user_path(current_user)
+    when User
+      user_path(resource.id)
     end
   end
 
-
   helper_method :guest_user?, :current_or_guest_user
   include AlbumsHelper
-
 
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
     devise_parameter_sanitizer.permit(:sign_in, keys: [:name])
-    #devise_parameter_sanitizer.permit(:account_update, keys: [:name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
 
 
   def current_or_guest_user
     if current_user
-      if session[:guest_user] && session[:guest_user] != current_user.id
+      if session[:guest_user_id] && session[:guest_user_id] != current_user.id
         logging_in
         guest_user(with_retry = false).try(:reload).try(:destroy)
-        session[:guest_user] = nil
+        session[:guest_user_id] = nil
       end
       current_user
     else
@@ -56,12 +54,18 @@ class ApplicationController < ActionController::Base
   end
 
   def logging_in
+    # comments = Comment.where(guest_user.id)
+    # comments.each do |comment|
+    #   comment.user_id = current_user.id
+    #   comment.save!
+    # end
+    guest_user.guest = false
     guest_user.move_to(current_user)
   end
 
   def create_guest_user
-    u = User.new(name: "guest", email: "guest_#{Time.now.to_i}#{rand(100)}@example.com" )
-    u.save!(validate: false)
+    u = User.new(name: "guest", email: "guest_#{Time.now.to_i}#{rand(100)}@example.com", guest: true )
+    u.save!(validate: false) #バリデーションを外す
     session[:guest_user_id] = u.id
     u
   end

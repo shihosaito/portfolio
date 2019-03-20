@@ -1,3 +1,100 @@
 // Place all the styles related to the albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+/*アルバム詳細ページ*/
+
+.album_show {
+  margin: 0 10%;
+}
+.album_title {
+
+}
+
+/*アルバム詳細ページ　左側*/
+
+.album_show_box {
+  display: flex;
+}
+
+.album_photo_box {
+  flex-shrink: 2;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin: 0px 10px 25px 0;
+}
+.album_photo {
+  flex-shrink: 1;
+  margin: 5px;
+  padding: 5px;
+  background-color: #d0d0d0;
+}
+
+/*ーーーーーーーーーーーーーーーー
+/*アルバム詳細ページ　右側*/
+
+.album_comments_box {
+  flex-shrink: 1;
+}
+/*写真追加・アルバム編集ボタン*/
+.album_edit_box {
+  width: 100%;
+}
+.new_photo_box {
+  border: 1px solid #9c9c9c;
+  padding: 15px;
+}
+.new_photo_box_title {
+  position: relative;
+}
+.new_photo_box_title strong {
+  position: absolute;
+  bottom: 0;
+  font-size: 18px;
+}
+.new_photo_box_form {
+  margin: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed;
+}
+.new_photo_box_btn {
+  margin: 0 15px;
+}
+
+/*チャット*/
+.chat_box {
+  padding: 10px;
+  background-color: #d0d0d0;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.chat_comment {
+  padding: 3px 0 15px 0;
+}
+.chat_comment textarea {
+  margin-bottom: 5px;
+}
+.comment_box {
+  width: 100%;
+  height: 400px;
+  overflow: scroll;
+  background-color: #d0d0d0;
+}
+.comment_text {
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background-color: #eaeaea;
+  width: 100%;
+  border-radius: 10px;
+}
+
+/*ーーーーーーーーーーーーーーーー*/
+
+
+
+
+
+

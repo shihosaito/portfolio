@@ -12,3 +12,32 @@
 .main_search_form {
   margin: 35px 10px;
 }
+
+
+.top_main {
+  position: relative;
+}
+.top_main_mask {
+  padding: 30px 60px;
+  background-color: #ffffff;
+  height: 450px;
+}
+.top_main_logo {
+  margin: 0 auto;
+  width: 480px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 5px dashed #c3c3c3;
+}
+.top_main_icon {
+ float: left;
+ padding-right: 15px;
+}
+.top_main_icon:last-child {
+  position: absolute;
+  right: 60px;
+  bottom: 40px;
+}
+.top_main_icon img {
+  border-radius: 50%;
+}

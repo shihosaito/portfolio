@@ -1,2 +1,83 @@
-<h1>Admin::Albums#show</h1>
-<p>Find me in app/views/admin/albums/show.html.erb</p>
+
+<%= render 'admin/users/admin_header' %>
+
+<div class="container">
+  <div class="row">
+    <div class="admin_user_index_title">
+      <h2>
+        <%= @album.album_name %>
+        <%= link_to "アルバム削除", admin_album_path, method: :delete, class: "btn btn-danger" %>
+      </h2>
+    </div>
+
+    <div class="album_edit_box clearfix">
+      <div>
+        <h3>アルバム情報の編集</h3>
+        <%= form_with model: @album do |f| %>
+          <%= f.label :album_name, "アルバム名" %>
+          <%= f.text_field :album_name %><br>
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password %>
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <%= f.password_field :password_confirmation %>
+          <%= f.submit "変更", class: "btn btn-success" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>番号</th>
+            <th>写真</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @photos.each do |photo| %>
+            <tr>
+              <%= form_with model: photo do |f| %>
+                <th>
+                  <%= f.number_field :image_number %></th>
+                <td>
+                  <%= image_tag photo.image.url, width: "300" %>
+                  <%= f.file_field :image, required: true %>
+                </td>
+                <%= f.hidden_field :album_id, :value => params[:id] %>
+                <td><%= f.submit "変更", class: "btn btn-default" %></td>
+                <td><%= link_to "削除", photo_path(photo.id), method: :delete, class: "btn btn-danger" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-4 chat_box">
+      <div class="chat_comment">
+        <%= form_with class: "comment_form", model: @comment do |f| %>
+        <%= f.label :コメント %><br>
+        <%= f.text_area :comment_text, class: "form-control" %>
+        <%= f.hidden_field :album_id, value: params[:id] %>
+        <%= f.hidden_field :user_id, value: current_admin.id %>
+        <%= f.submit "投稿", class: "comment_submit btn btn-default btn-block" %>
+        <% end %>
+      </div>
+
+      <div class="comment_box">
+        <div class="post_wrapper">
+          <% @comments.each do |comment| %>
+          <div class="comment_text">
+            <% user = User.with_deleted.find(comment.user_id) %>
+            <strong><%= user.name %></strong><br>
+            <%= comment.comment_text %>
+            <%= link_to "削除", admin_comment_path(comment.id), method: :delete %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
