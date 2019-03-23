@@ -33,10 +33,17 @@
         <div class="user_albums_title"><p><%= image_tag 'user_point.png', size: "25x25" %><strong>アルバム 一覧</strong></div>
         <% @albums.each do |album| %>
         <div class="user_album_box">
-          <p>ID | <%= album.user_id %></p>
-          <p>アルバム名 | <%= album.album_name %></p>
-          <p>作成日 | <%= album.created_at %></p>
-          <%= link_to "詳細", album_path(album.id) %>
+          <div class="album_box">
+            <li>ID | </li>
+            <li>アルバム名 | </li>
+            <li>作成日 | </li>
+          </div>
+          <div class="album_box">
+            <li><%= album.user_id %></li>
+            <li><%= album.album_name %></li>
+            <li><%= album.created_at %></li>
+          </div>
+          <%= link_to "詳細", album_path(album.id), class: "btn btn-default" %>
         </div>
       <% end %>
       </div>

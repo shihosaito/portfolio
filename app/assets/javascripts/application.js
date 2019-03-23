@@ -22,7 +22,7 @@
 function update(){
   console.log($('.comment_text'))
   if ($('.comment_text')[0]){
-    var comment_id = $('.comment_text:last').data('commentid');
+    var comment_id = $('.comment_text:first').data('commentid');
   }else{
     var comment_id = 0
   }
@@ -36,14 +36,15 @@ function update(){
   })
   .always(function(newComments){
     console.log(newComments);
+    if ($(newComments)[0]){
     $.each(newComments, function(i, comment){
-      $('.post_wrapper').prepend('<div class="comment_text"><strong>' + comment.user_id +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
-      })
+      $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.user_id +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
+      })};
     })
   }
 
 $(function(){
-    setInterval(update, 1000);
+    setInterval(update, 10000);
   });
 
 
@@ -61,7 +62,7 @@ $(function(){
     console.log(e);
     // console.log('-----終わり------');
     $('#comment_comment_text').val(''); //フォームを空にする
-    $('.post_wrapper').prepend('<div class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ e.detail[0].comment.id +'">削除</a></div>');
+    $('.post_wrapper').prepend('<div data-commentid="' + e.detail[0].comment.id + '" class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ e.detail[0].comment.id +'">削除</a></div>');
   })
 })
 

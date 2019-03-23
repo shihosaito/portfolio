@@ -16,15 +16,43 @@
   display: flex;
 }
 
-
+/*ーーーーーーーーーーーーーーーー
 /*アルバム詳細ページ　左側*/
-
 .album_photo_box {
-  
+  display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
   margin: 0px 10px 25px 0;
+  width: 65%;
+  height: 557px;
+  overflow: scroll;
 }
+/*写真追加・アルバム編集ボタン*/
+.new_photo_box {
+  width: 350px;
+  height: 350px;
+  margin: 0 10px 10px 0;
+  border: 1px solid #9c9c9c;
+  padding: 35px 15px;
+  background-color: #ffffff;
+}
+.new_photo_box_title {
+  position: relative;
+}
+.new_photo_box_title strong {
+  position: absolute;
+  bottom: 0;
+  font-size: 18px;
+}
+.new_photo_box_form {
+  margin: 25px 15px 32px 15px;
+  padding-bottom: 32px;
+  border-bottom: 1px dashed;
+}
+.new_photo_box_btn {
+  margin: 0 15px;
+}
+/*写真表示*/
 .album_photo {
   width: 350px;
   height: 350px;
@@ -60,39 +88,15 @@
 /*アルバム詳細ページ　右側*/
 
 .album_comments_box {
-  position: -webkit-sticky;
+  /*position: -webkit-sticky;
   position: sticky;
   top: 0;
-  height: 840px;
-}
-/*写真追加・アルバム編集ボタン*/
-.album_edit_box {
-  width: 100%;
-  margin-bottom: 15px;
-}
-.new_photo_box {
-  border: 1px solid #9c9c9c;
-  padding: 15px;
-}
-.new_photo_box_title {
-  position: relative;
-}
-.new_photo_box_title strong {
-  position: absolute;
-  bottom: 0;
-  font-size: 18px;
-}
-.new_photo_box_form {
-  margin: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px dashed;
-}
-.new_photo_box_btn {
-  margin: 0 15px;
+  height: 840px;*/
 }
 
 /*チャット*/
 .chat_box {
+  width: 350px;
   padding: 10px;
   background-color: #d0d0d0;
   margin-bottom: 30px;
