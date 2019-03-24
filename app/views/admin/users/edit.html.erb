@@ -1,2 +1,49 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+<%= render 'admin/users/admin_header' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    <%= flash[:notice] %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">ユーザー情報　編集</h2>
+        </div>
+        <div class="panel-body">
+          <div>
+          <%= form_with model: [:admin, @user] do |f| %>
+
+            <div class="field">
+              <%= f.label :name %><br />
+              <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autocomplete: "email" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %> <i>(6文字以上)</i><br />
+              <%= f.password_field :password, autocomplete: "new-password" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Update", class: "btn btn-success" %>
+            </div>
+          <% end %>
+
+          <h3>ユーザーの削除</h3>
+          <%= link_to "削除", admin_user_path(@user.id), method: :delete, class: "btn btn-danger" %>
+          <%= link_to "Back", :back, class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

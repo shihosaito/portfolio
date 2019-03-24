@@ -14,15 +14,29 @@
 
   <% if admin_signed_in? %>
     <div class="admin_back">
+      <div class="header_back"></div>
   <% else %>
     <div class="main_back">
+      <div class="header_back"></div>
+
   <% end %>
     <%= yield %>
   </div>
 
-    <footer>
-      <p><%= link_to "管理者　ログイン", new_admin_session_path %></p>
-      <p><%= link_to "管理者 ログアウト", destroy_admin_session_path, method: :delete %></p>
+    <footer class="footer">
+      <ul>
+        <li class="footer_icon">●</li>
+        <li class="footer_icon"><a href="#">サイト詳細</a></li>
+        <li class="footer_icon"><a href="#">お問い合わせ</a></li>
+        <li class="footer_icon">
+          <% unless admin_signed_in? %>
+            <%= link_to "●", new_admin_session_path %>
+            <% else %>
+            <%= link_to "●", destroy_admin_session_path, method: :delete %>
+            <% end %>
+
+          </li>
+      </ul>
     </footer>
   </body>
 </html>

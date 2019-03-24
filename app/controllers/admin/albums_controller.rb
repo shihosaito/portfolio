@@ -8,8 +8,12 @@ class Admin::AlbumsController < ApplicationController
 
   def show
     @album = Album.find(params[:id])
-    @photos = Photo.where(album_id: params[:id])
+    @photos = Photo.where(album_id: params[:id]).order(:image_number)
     @comments = Comment.where(album_id: params[:id]).reverse_order
+    respond_to do |f|
+      f.html
+      f.json { render json: Comment.where( 'id > ?', params[:comment][:id] ) }
+    end
   end
 
   def update
