@@ -43,21 +43,21 @@ function update(){
     })
   }
 
-$(function(){
-    setInterval(update, 10000);
-  });
+// $(function(){
+//     setInterval(update, 10000);
+//   });
 
 
 
 // チャット 投稿
 $(function(){
-  $(document).on('click', '.comment_submit', function(e){
+  $('.comment_submit').on('click', function(e){
     //空のフォームを送信できないようにする
     if ($('[name="comment[comment_text]"]').val() == ''){
       return false;
     }
   })
-  $(document).on('ajax:success', '.comment_form', function(e){
+  $('.comment_form').on('ajax:success', function(e){
     // console.log('-----始まり------');
     console.log(e);
     // console.log('-----終わり------');

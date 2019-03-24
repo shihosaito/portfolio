@@ -1,34 +1,25 @@
 
 <%= render 'admin/users/admin_header' %>
 
-<div class="container">
-  <div class="row">
-    <div>
-      <h2>アルバム一覧</h2>
+<div class="admin_album_index">
+  <div class="admin_album_index_title">
+    <%= flash[:notice] %>
+    <h2>アルバム一覧</h2>
+  </div>
+  <div class="admin_album_list">
+    <div class="admin_album_list_title">
+      <li>アルバム名</li>
+      <li>作成者</li>
+      <li>作成日時</li>
+      <li>詳細</li>
     </div>
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>アルバム名</th>
-            <th>作成者</th>
-            <th>作成日時</th>
-            <th>詳細</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @albums.each do |album| %>
-            <tr>
-              <td><%= album.album_name %></td>
-              <td>
-                <% user = User.with_deleted.find(album.user_id) %>
-                <%= user.name %></td>
-              <td><%= album.created_at %></td>
-              <td><%= link_to "詳細", admin_album_path(album.id), class: "btn btn-default" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+    <% @albums.each do |album| %>
+    <div class="admin_album_list_body">
+        <li><%= album.album_name %></li>
+        <li><% user = User.with_deleted.find(album.user_id) %><%= user.name %></li>
+        <li><%= album.created_at %></li>
+        <li><%= link_to "詳細", admin_album_path(album.id), class: "btn btn-default" %></li>
+      </div>
+    <% end %>
   </div>
 </div>
