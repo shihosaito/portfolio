@@ -74,6 +74,8 @@ gem 'kaminari' #ページャー機能
 gem 'paranoia' #削除フラグ
 
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 
 #デバック用
