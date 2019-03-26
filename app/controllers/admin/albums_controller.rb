@@ -28,4 +28,8 @@ class Admin::AlbumsController < ApplicationController
     redirect_to album_user_path(album.user_id)
   end
 
+  # def destroy_all
+  #   users = User.where('created_at < ?', 1.week.ago )
+  # end
+
 end

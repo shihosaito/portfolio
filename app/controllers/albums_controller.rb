@@ -8,10 +8,21 @@ class AlbumsController < ApplicationController
     @photos = Photo.where(album_id: params[:id]).order(:image_number)
     @comment = Comment.new
     @comments = Comment.where(album_id: params[:id]).reverse_order
+
     respond_to do |f|
       f.html
-      f.json { render json: Comment.where( 'id > ?', params[:comment][:id] ) }
+      f.json {
+        comments = Comment.joins(:user).select('comments.*, users.name').where('comments.id > ?', params[:comment][:id])
+        # users = User.joins(:comments).where(comments: ['id > ?' , params[:comment][:id]])
+        # chats = comments | users
+        # render json: chats }
+        render json: comments }
     end
+
+    # respond_to do |f|
+    #   f.html
+    #   f.json { render json: Comment.where( 'id > ?', params[:comment][:id] ) }
+    # end
   end
 
   def create

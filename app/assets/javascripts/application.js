@@ -26,6 +26,7 @@ function update(){
   }else{
     var comment_id = 0
   }
+  console.log(comment_id)
   $.ajax({
     url: location.href,
     type: 'GET',
@@ -38,14 +39,14 @@ function update(){
     console.log(newComments);
     if ($(newComments)[0]){
     $.each(newComments, function(i, comment){
-      $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.user_id +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
+      $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
       })};
     })
   }
 
-// $(function(){
-//     setInterval(update, 10000);
-//   });
+$(function(){
+    setInterval(update, 5000);
+  });
 
 
 
