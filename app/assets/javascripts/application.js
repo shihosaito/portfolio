@@ -35,14 +35,51 @@ function update(){
     },
     dataType: 'json'
   })
-  .always(function(newComments){
+  .always(function(data){
+    console.log(data);
+    var newComments = $(data).comments;
     console.log(newComments);
+
     if ($(newComments)[0]){
     $.each(newComments, function(i, comment){
       $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
       })};
-    })
+    });
+
+    var deletedCommentIds = $(data).deleted_comments;
+    console.log(deletedCommentIds);
+
+    if ($(deletedCommentIds)[0]){
+    $.each(deletedCommentIds, function(i, deleted) {
+      // data-commentid が deletedの要素を削除
+      $($('.post_wrapper').remove('.comment_text:containts(deleted)'));
+    })};
   }
+
+// function update(){
+//   console.log($('.comment_text'))
+//   if ($('.comment_text')[0]){
+//     var comment_id = $('.comment_text').data('commentid');
+//   }else{
+//     var comment_id = 0
+//   }
+//   console.log(comment_id)
+//   $.ajax({
+//     url: location.href,
+//     type: 'GET',
+//     data: {
+//       comment {id: comment_id}
+//     },
+//     dataType: 'json'
+//   })
+//   .always(function(newComments){
+//     console.log(newComments);
+//     if ($(newComments)[0]){
+//     $.each(newComments, function(i, comment){
+//       $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
+//       })};
+//     })
+//   }
 
 $(function(){
     setInterval(update, 5000);
