@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+      # match 'users/destroy_all', to: 'users#destroy_all', via: :delete
+      delete 'users/destroy_all' => 'users#destroy_all'
     resources :albums
     resources :photos
     resources :comments
