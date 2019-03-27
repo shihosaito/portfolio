@@ -12,89 +12,90 @@
 //
 //= require rails-ujs
   //= require turbolinks
-  //= require jquery.turbolinks
   //= require jquery
   //= require bootstrap-sprockets
   //= require_tree .
 
+$(document).on('turbolinks:load', function(){
 
-
-// チャット 他の画面に同期method
-function update(){
-  if ($('.comment_text')[0]){
-    var comment_id = $('.comment_text:first').data('commentid');
-  }else{
-    var comment_id = 0
-  }
-  $.ajax({
-    url: location.href,
-    type: 'GET',
-    data: {
-      comment: { id: comment_id }
-    },
-    dataType: 'json'
-  })
-  .always(function(data){
-    //投稿の非同期
-    var newComments = data.comments;
-    if ($(newComments)[0]){
-    $.each(newComments, function(i, comment){
-      $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
-      })
-    };
-
-    // 削除の非同期
-    var deletedCommentIds = data.deleted_comments;
-    if ($(deletedCommentIds)[0]){
-    console.log($(deletedCommentIds));
-    $.each(deletedCommentIds, function(i, deleted) {
-      // data-commentid が deletedの要素を削除
-      $('[data-commentid="'+ deleted.id +'"]').remove();
-      })
-    };
-  });
-}
-
-// $(function(){
-//     setInterval(update, 1000);
-//   });
-
-
-
-// チャット 投稿
-$(function(){
-  $('.comment_submit').on('click', function(e){
-    //空のフォームを送信できないようにする
-    if ($('[name="comment[comment_text]"]').val() == ''){
-      return false;
+  // チャット 他の画面に同期method
+  function update(){
+    if ($('.comment_text')[0]){
+      var comment_id = $('.comment_text:first').data('commentid');
+    }else{
+      var comment_id = 0
     }
+    $.ajax({
+      url: location.href,
+      type: 'GET',
+      data: {
+        comment: { id: comment_id }
+      },
+      dataType: 'json'
+    })
+    .always(function(data){
+      //投稿の非同期
+      var newComments = data.comments;
+      if ($(newComments)[0]){
+      $.each(newComments, function(i, comment){
+        $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
+        })
+      };
+
+      // 削除の非同期
+      var deletedCommentIds = data.deleted_comments;
+      if ($(deletedCommentIds)[0]){
+      console.log($(deletedCommentIds));
+      $.each(deletedCommentIds, function(i, deleted) {
+        // data-commentid が deletedの要素を削除
+        $('.comment_text[data-commentid="'+ deleted.id +'"]').remove();
+        })
+      };
+    });
+  }
+
+  $(function(){
+      setInterval(update, 1000);
+    });
+
+
+
+  // チャット 投稿
+  $(function(){
+    $('.comment_submit').on('click', function(e){
+      //空のフォームを送信できないようにする
+      if ($('[name="comment[comment_text]"]').val() == ''){
+        return false;
+      }
+    })
+    $('.comment_form').on('ajax:success', function(e){
+      // console.log('-----始まり------');
+      console.log(e);
+      // console.log('-----終わり------');
+      $('#comment_comment_text').val(''); //フォームを空にする
+      $('.post_wrapper').prepend('<div data-commentid="' + e.detail[0].comment.id + '" class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ e.detail[0].comment.id +'">削除</a></div>');
+    })
   })
-  $('.comment_form').on('ajax:success', function(e){
-    // console.log('-----始まり------');
-    console.log(e);
-    // console.log('-----終わり------');
-    $('#comment_comment_text').val(''); //フォームを空にする
-    $('.post_wrapper').prepend('<div data-commentid="' + e.detail[0].comment.id + '" class="comment_text"><strong>' + e.detail[0].user.name +'</strong><br>'+ e.detail[0].comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ e.detail[0].comment.id +'">削除</a></div>');
+
+  // コメント削除
+  $(function(){
+    $('.comment_delete').on('ajax:success', function(e){
+      console.log(e)
+      $(this).closest('.comment_text').remove();
+    })
   })
-})
-
-// コメント削除
-$(function(){
-  $('.comment_delete').on('ajax:success', function(e){
-    console.log(e)
-    $(this).closest('.comment_text').remove();
-  })
-})
 
 
 
-// 写真の拡大表示・閉じる
-$(function(){
-  $('.photo_open_close').on('click', function(){
-    $(this).toggleClass('active');
-    var photoid = $(this).data('photoid');
-    $(`.photo_show_js[data-photoid="${photoid}"]`).fadeToggle();
+  // 写真の拡大表示・閉じる
+  $(function(){
+    $('.photo_open_close').on('click', function(){
+      $(this).toggleClass('active');
+      var photoid = $(this).data('photoid');
+      $(`.photo_show_js[data-photoid="${photoid}"]`).fadeToggle();
+    });
   });
+
 });
 
 

@@ -68,7 +68,6 @@ gem 'mini_magick' #画像ファイルのリサイズ
 
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
-gem 'jquery-turbolinks'
 
 gem 'kaminari' #ページャー機能
 
