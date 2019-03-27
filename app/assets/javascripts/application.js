@@ -20,13 +20,11 @@
 
 // チャット 他の画面に同期method
 function update(){
-  console.log($('.comment_text'))
   if ($('.comment_text')[0]){
     var comment_id = $('.comment_text:first').data('commentid');
   }else{
     var comment_id = 0
   }
-  console.log(comment_id)
   $.ajax({
     url: location.href,
     type: 'GET',
@@ -36,53 +34,28 @@ function update(){
     dataType: 'json'
   })
   .always(function(data){
-    console.log(data);
-    var newComments = $(data).comments;
-    console.log(newComments);
-
+    //投稿の非同期
+    var newComments = data.comments;
     if ($(newComments)[0]){
     $.each(newComments, function(i, comment){
       $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
-      })};
-    });
+      })
+    };
 
-    var deletedCommentIds = $(data).deleted_comments;
-    console.log(deletedCommentIds);
-
+    // 削除の非同期
+    var deletedCommentIds = data.deleted_comments;
     if ($(deletedCommentIds)[0]){
+    console.log($(deletedCommentIds));
     $.each(deletedCommentIds, function(i, deleted) {
       // data-commentid が deletedの要素を削除
-      $($('.post_wrapper').remove('.comment_text:containts(deleted)'));
-    })};
-  }
-
-// function update(){
-//   console.log($('.comment_text'))
-//   if ($('.comment_text')[0]){
-//     var comment_id = $('.comment_text').data('commentid');
-//   }else{
-//     var comment_id = 0
-//   }
-//   console.log(comment_id)
-//   $.ajax({
-//     url: location.href,
-//     type: 'GET',
-//     data: {
-//       comment {id: comment_id}
-//     },
-//     dataType: 'json'
-//   })
-//   .always(function(newComments){
-//     console.log(newComments);
-//     if ($(newComments)[0]){
-//     $.each(newComments, function(i, comment){
-//       $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
-//       })};
-//     })
-//   }
+      $('[data-commentid="'+ deleted.id +'"]').remove();
+      })
+    };
+  });
+}
 
 $(function(){
-    setInterval(update, 5000);
+    setInterval(update, 1000);
   });
 
 
@@ -104,8 +77,6 @@ $(function(){
   })
 })
 
-
-
 // コメント削除
 $(function(){
   $('.comment_delete').on('ajax:success', function(e){
@@ -113,6 +84,7 @@ $(function(){
     $(this).closest('.comment_text').remove();
   })
 })
+
 
 
 // 写真の拡大表示・閉じる

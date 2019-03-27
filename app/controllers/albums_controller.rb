@@ -12,9 +12,8 @@ class AlbumsController < ApplicationController
     respond_to do |f|
       f.html
       f.json {
-        # comments = Comment.joins(:user).select('comments.*, users.name').where('comments.id > ?', params[:comment][:id])
-        comments = Comment.joins(:user).select('comments.*, users.name').where(id: params[:comment][:id])
-        delete_comments = Comment.only_deleted.where(album_id: params[:id])
+        comments = Comment.joins(:user).select('comments.*, users.name').where('comments.id > ?', params[:comment][:id]).where(album_id: @album.id)
+        delete_comments = Comment.only_deleted.where(album_id: @album.id)
         render json: { comments:comments, deleted_comments: delete_comments }
       }
     end
