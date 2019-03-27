@@ -31,6 +31,12 @@ class Admin::UsersController < ApplicationController
     flash[:notice] = "ユーザーを削除しました"
   end
 
+  def destroy_all
+    users = User.where('created_at', 1.week.ago.all_day).where(guest: "true" )
+    users.destroy_all
+    redirect_back(fallback_location: admin_users_path)
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

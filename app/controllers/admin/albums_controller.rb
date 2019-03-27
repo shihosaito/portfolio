@@ -12,8 +12,11 @@ class Admin::AlbumsController < ApplicationController
     @comments = Comment.where(album_id: params[:id]).reverse_order
     respond_to do |f|
       f.html
-      f.json { render json: Comment.where( 'id > ?', params[:comment][:id] ) }
-    end
+      f.json {
+        comments = Comment.joins(:user).select('comments.*, users.name').where('comments.id > ?', params[:comment][:id]).where(album_id: @album.id)
+        delete_comments = Comment.only_deleted.where(album_id: @album.id)
+        render json: { comments:comments, deleted_comments: delete_comments }
+      }
   end
 
   def update
@@ -27,5 +30,9 @@ class Admin::AlbumsController < ApplicationController
     album.destroy
     redirect_to album_user_path(album.user_id)
   end
+
+  # def destroy_all
+  #   users = User.where('created_at < ?', 1.week.ago )
+  # end
 
 end

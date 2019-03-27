@@ -21,7 +21,6 @@
 
 // チャット 他の画面に同期method
 function update(){
-  console.log($('.comment_text'))
   if ($('.comment_text')[0]){
     var comment_id = $('.comment_text:first').data('commentid');
   }else{
@@ -35,17 +34,29 @@ function update(){
     },
     dataType: 'json'
   })
-  .always(function(newComments){
-    console.log(newComments);
+  .always(function(data){
+    //投稿の非同期
+    var newComments = data.comments;
     if ($(newComments)[0]){
     $.each(newComments, function(i, comment){
-      $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.user_id +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
-      })};
-    })
-  }
+      $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
+      })
+    };
+
+    // 削除の非同期
+    var deletedCommentIds = data.deleted_comments;
+    if ($(deletedCommentIds)[0]){
+    console.log($(deletedCommentIds));
+    $.each(deletedCommentIds, function(i, deleted) {
+      // data-commentid が deletedの要素を削除
+      $('[data-commentid="'+ deleted.id +'"]').remove();
+      })
+    };
+  });
+}
 
 // $(function(){
-//     setInterval(update, 10000);
+//     setInterval(update, 1000);
 //   });
 
 
@@ -67,8 +78,6 @@ $(function(){
   })
 })
 
-
-
 // コメント削除
 $(function(){
   $('.comment_delete').on('ajax:success', function(e){
@@ -76,6 +85,7 @@ $(function(){
     $(this).closest('.comment_text').remove();
   })
 })
+
 
 
 // 写真の拡大表示・閉じる
