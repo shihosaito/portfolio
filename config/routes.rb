@@ -19,14 +19,14 @@ Rails.application.routes.draw do
   resources :albums
     post '/albums/login' => 'albums#login'
   resources :photos, except: [:index, :show]
-  resources :comments, only: [:new, :destroy]
+  resources :comments, only: [:create, :destroy]
 
   namespace :admin do
     resources :users
       delete '/users' => 'users#destroy_all'
     resources :albums, except: [:new]
     resources :photos, only: [:destroy]
-    resources :comments, only: [:new, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
 end

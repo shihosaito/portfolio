@@ -76,7 +76,7 @@ class AlbumsController < ApplicationController
 
   private
   def album_params
-    params.require(:album).permit(:album_name, :album_password, :password, :password_confirmation)
+    params.require(:album).permit(:album_name, :password, :password_confirmation)
   end
 
 end

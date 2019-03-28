@@ -9,6 +9,7 @@ class Admin::AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
     @photos = Photo.where(album_id: params[:id]).order(:image_number)
+    @comment = Comment.new
     @comments = Comment.where(album_id: params[:id]).reverse_order
     respond_to do |f|
       f.html
@@ -22,14 +23,19 @@ class Admin::AlbumsController < ApplicationController
 
   def update
     album = Album.find(params[:id])
-    album.update
+    album.update(album_params)
     redirect_to admin_album_path(album.id)
   end
 
   def destroy
     album = Album.find(params[:id])
     album.destroy
-    redirect_to album_user_path(album.user_id)
+    redirect_to admin_user_path(album.user_id)
+  end
+
+  private
+  def album_params
+    params.require(:album).permit(:album_name, :password, :password_confirmation)
   end
 
 end
