@@ -2,15 +2,23 @@ class AlbumsController < ApplicationController
 
  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
 
+  def index
+  end
+
   def show
     @album = Album.find(params[:id])
     @photo = Photo.new
     @photos = Photo.where(album_id: params[:id]).order(:image_number)
     @comment = Comment.new
     @comments = Comment.where(album_id: params[:id]).reverse_order
+
     respond_to do |f|
       f.html
-      f.json { render json: Comment.where( 'id > ?', params[:comment][:id] ) }
+      f.json {
+        comments = Comment.joins(:user).select('comments.*, users.name').where('comments.id > ?', params[:comment][:id]).where(album_id: @album.id)
+        delete_comments = Comment.only_deleted.where(album_id: @album.id)
+        render json: { comments:comments, deleted_comments: delete_comments }
+      }
     end
   end
 

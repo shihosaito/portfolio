@@ -8,7 +8,4 @@ class UsersController < ApplicationController
     @albums = @user.album
   end
 
-  def edit
-  end
-
 end

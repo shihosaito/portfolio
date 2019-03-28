@@ -15,19 +15,18 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users
+  resources :users, only: [:show, :edit]
   resources :albums
     post '/albums/login' => 'albums#login'
-    delete '/albums/logout' => 'albums#logout'
-  resources :photos
-  resources :comments
+  resources :photos, except: [:index, :show]
+  resources :comments, only: [:new, :destroy]
 
   namespace :admin do
     resources :users
-    resources :albums
-    resources :photos
-    resources :comments
+      delete '/users' => 'users#destroy_all'
+    resources :albums, except: [:new]
+    resources :photos, only: [:destroy]
+    resources :comments, only: [:new, :destroy]
   end
-
 
 end

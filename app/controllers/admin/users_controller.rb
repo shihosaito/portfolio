@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.with_deleted.all
+    @users = User.all
   end
 
   def show
@@ -26,13 +26,27 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    user.delete
+    user.destroy
     redirect_to admin_users_path
     flash[:notice] = "ユーザーを削除しました"
   end
 
+  def destroy_all
+    start_time = Time.zone.local(2019, 3, 1, 00, 00, 00) #(2019年, 11月, 29日, 11時, 22分, 33秒)
+    users = User.where(created_at: start_time..1.week.ago).where(guest: "true")
+    users.destroy_all
+    redirect_to admin_users_path
+    flash[:notice] = "ユーザーを削除しました"
+  end
+
+  def destroy_all
+    users = User.where('created_at', 1.week.ago.all_day).where(guest: "true" )
+    users.destroy_all
+    redirect_back(fallback_location: admin_users_path)
+  end
+
   private
   def user_params
-    params.require(:user).params(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end

@@ -12,7 +12,7 @@
       <li>名前</li>
       <li>詳細ページ</li>
       <li>登録日時</li>
-      <li></li>
+      <li><%= link_to "古いユーザーの一括削除", admin_users_path, method: :delete, class: "btn btn-danger" %></li>
     </div>
     <% @users.each do |user| %>
     <div class="admin_user_list_body">
@@ -21,7 +21,7 @@
         <li><% if user.guest == false %>
             <%= link_to "詳細", admin_user_path(user.id), class: "btn btn-default" %>
             <% end %></li>
-        <li><%= user.created_at %></li>
+        <li><%= user.created_at.strftime("%Y-%m-%d %H:%M") %></li>
         <li><% if user.guest == true %>
             <%= link_to "削除", admin_user_path(user.id), method: :delete, class: "btn btn-danger" %>
             <% end %></li>
