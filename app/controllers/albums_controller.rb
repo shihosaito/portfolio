@@ -2,6 +2,9 @@ class AlbumsController < ApplicationController
 
  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
 
+  def index
+  end
+
   def show
     @album = Album.find(params[:id])
     @photo = Photo.new
@@ -17,11 +20,6 @@ class AlbumsController < ApplicationController
         render json: { comments:comments, deleted_comments: delete_comments }
       }
     end
-
-    # respond_to do |f|
-    #   f.html
-    #   f.json { render json: Comment.where( 'id > ?', params[:comment][:id] ) }
-    # end
   end
 
   def create

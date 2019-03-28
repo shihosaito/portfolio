@@ -54,13 +54,8 @@ class ApplicationController < ActionController::Base
   end
 
   def logging_in
-    # comments = Comment.where(guest_user.id)
-    # comments.each do |comment|
-    #   comment.user_id = current_user.id
-    #   comment.save!
-    # end
     guest_user.guest = false
-    guest_user.move_to(current_user)
+    guest_user.move_to(current_user) #コメントのuse_idを書き換える
   end
 
   def create_guest_user
