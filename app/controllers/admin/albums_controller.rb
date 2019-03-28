@@ -17,6 +17,7 @@ class Admin::AlbumsController < ApplicationController
         delete_comments = Comment.only_deleted.where(album_id: @album.id)
         render json: { comments:comments, deleted_comments: delete_comments }
       }
+    end
   end
 
   def update
