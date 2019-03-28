@@ -36,6 +36,7 @@ $(document).on('turbolinks:load', function(){
     .always(function(data){
       //投稿の非同期
       var newComments = data.comments;
+      console.log(newComments);
       if ($(newComments)[0]){
       $.each(newComments, function(i, comment){
         $('.post_wrapper').prepend('<div data-commentid="' + comment.id + '" class="comment_text"><strong>' + comment.name +'</strong><br>'+ comment.comment_text + '<a class="comment_delete" data-remote="true" rel="nofollow" data-method="delete" href="/comments/'+ comment.id +'">削除</a></div>');
@@ -45,7 +46,6 @@ $(document).on('turbolinks:load', function(){
       // 削除の非同期
       var deletedCommentIds = data.deleted_comments;
       if ($(deletedCommentIds)[0]){
-      console.log($(deletedCommentIds));
       $.each(deletedCommentIds, function(i, deleted) {
         // data-commentid が deletedの要素を削除
         $('.comment_text[data-commentid="'+ deleted.id +'"]').remove();
@@ -55,7 +55,7 @@ $(document).on('turbolinks:load', function(){
   }
 
   $(function(){
-      setInterval(update, 1000);
+      setInterval(update, 10000);
     });
 
 

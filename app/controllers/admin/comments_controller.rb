@@ -7,7 +7,7 @@ class Admin::CommentsController < ApplicationController
   user = current_admin
   if comment.save
     respond_to do |f|
-      f.json { render json: {cmment:comment, user: user}}
+      f.json { render json: {comment:comment, user: user}}
     end
   else
     redirect_back(fallback_location: album_path)
