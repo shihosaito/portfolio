@@ -12,6 +12,7 @@ class Admin::CommentsController < ApplicationController
   else
     redirect_back(fallback_location: album_path)
     flash[:notice] = "コメントを投稿できませんでした"
+  end
  end
 
   def destroy
