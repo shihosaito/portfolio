@@ -24,10 +24,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+      delete '/users' => 'users#destroy_all'
     resources :albums
     resources :photos
     resources :comments
   end
-
 
 end

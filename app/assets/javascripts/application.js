@@ -54,9 +54,9 @@ function update(){
   });
 }
 
-$(function(){
-    setInterval(update, 1000);
-  });
+// $(function(){
+//     setInterval(update, 1000);
+//   });
 
 
 

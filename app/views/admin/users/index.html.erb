@@ -12,6 +12,7 @@
       <li>名前</li>
       <li>詳細ページ</li>
       <li>登録日時</li>
+      <li><%= link_to "古いユーザーの一括削除", admin_users_path, method: :delete, class: "btn btn-danger" %></li>
     </div>
     <% @users.each do |user| %>
     <div class="admin_user_list_body">

@@ -12,7 +12,6 @@ class Album < ApplicationRecord
   validates :album_name, length: { maximum: 20 }
   validates :password_digest, length: { minimum: 6 }
 
-
   has_secure_password
 
   def Album.digest(string)
