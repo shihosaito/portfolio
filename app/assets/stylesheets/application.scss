@@ -82,14 +82,19 @@ header {
 }
 
 .admin_back {
-  min-height: 700px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .main_back {
-  min-height: 700px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #eaeaea;
 }
 
 .footer {
+  margin-top: auto;
   height: 100px;
 }
 

@@ -79,6 +79,42 @@
 }
 
 /*ーーーーーーーーーーーーーーーーーー*/
+/*新規登録・ログイン・編集*/
+.sign_box {
+  width: 450px;
+  margin: 0 auto;
+  background-color: white;
+}
+.sign_box_line {
+  margin: 10px;
+  border: 2px dashed #9a9a9a;
+  padding: 10px;
+}
+.sign_box_title {
+  background-color: #eaeaea;
+  padding: 20px 0;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+.sign_box_title h2 {
+  margin: 0;
+}
+.sign_box_body {
+
+}
+.sign_form {
+
+}
+.sign_form .field {
+  margin-bottom: 10px;
+}
+.sign_btn {
+  margin: 10px;
+}
+
+
+/*ーーーーーーーーーーーーーーーーーー*/
 
 
 /*ユーザー情報編集ページ*/
