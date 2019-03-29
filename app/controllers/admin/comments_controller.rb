@@ -11,7 +11,7 @@ class Admin::CommentsController < ApplicationController
       f.json { render json: {comment:comment, user: user}}
     end
   else
-    redirect_back(fallback_location: album_path)
+    redirect_back(fallback_location: admin_album_path)
     flash[:notice] = "コメントを投稿できませんでした"
   end
  end
