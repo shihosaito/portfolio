@@ -3,14 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .top_main_search {
-  margin-top: 60px;
+  margin-top: 30px;
   background-color: #ffffff;
+  border-radius: 15px;
 }
-.main_search_title {
-
+.top_main_search_line {
+  padding: 0 30px;
+  margin: 30px;
+  border: 2px #9e9e9e dashed;
 }
-.main_search_form {
+.main_search_title i {
+  font-size: 60px;
+  padding-right: 20px;
+}
+.search_form_box {
   margin: 35px 10px;
+}
+.search_form {
+  margin-bottom: 20px;
 }
 
 
