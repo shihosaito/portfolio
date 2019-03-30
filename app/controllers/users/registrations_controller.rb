@@ -43,8 +43,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def destroy
-  resource.destroy
-  resource.update(email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s)
+    resource.destroy
+    resource.update(email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s)
   end
 
   # protected

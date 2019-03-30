@@ -8,10 +8,10 @@ class UsersController < ApplicationController
     @albums = @user.album
   end
 
-  def delete
+  def destroy
     user = User.find(params[:id])
     user.delete
-    redirect_to root
+    redirect_to root_path
   end
 
 end
