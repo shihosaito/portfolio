@@ -6,7 +6,8 @@
     <div class="col-md-8 col-md-offset-2">
 
       <div class="user_show_title">
-        <h2><%= @user.name %>さん ようこそ！<%= flash[:notice] %></h2>
+        <%= flash[:notice] %>
+        <h2><%= @user.name %>さん ようこそ！</h2>
         <div class="user_show_title_btn">
         <%= link_to "登録情報の編集", edit_user_registration_path(@user.id), class: "btn btn-info" %>
         </div>

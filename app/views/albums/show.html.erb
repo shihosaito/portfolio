@@ -3,7 +3,8 @@
 
 <div class="album_show">
     <div class="album_title">
-      <h2><%= @album.album_name %><%= flash[:notice] %></h2>
+      <%= flash[:notice] %>
+      <h2><%= @album.album_name %></h2>
     </div>
     <div class="album_show_box">
     <!-- 写真の表示 -->
