@@ -54,9 +54,9 @@ $(document).on('turbolinks:load', function(){
     });
   }
 
-  $(function(){
-      setInterval(update, 1000);
-    });
+  // $(function(){
+  //     setInterval(update, 1000);
+  //   });
 
 
 

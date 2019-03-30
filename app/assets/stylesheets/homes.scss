@@ -15,29 +15,84 @@
 
 
 .top_main {
-  position: relative;
 }
-.top_main_mask {
+.top_main_box {
   padding: 30px 60px;
   background-color: #ffffff;
   height: 450px;
+  width: 60%;
+  margin: 0 auto 80px auto;
+  border-radius: 10px;
 }
 .top_main_logo {
   margin: 0 auto;
-  width: 480px;
-  margin-bottom: 20px;
+  width: 55%;
+  height: 100px;
+  background-image: url("/images/top_main_logo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   padding-bottom: 10px;
+  margin-bottom: 20px;
   border-bottom: 5px dashed #c3c3c3;
 }
 .top_main_icon {
- float: left;
- padding-right: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  width: 90%;
+  margin: 0 auto;
 }
-.top_main_icon:last-child {
-  position: absolute;
-  right: 60px;
-  bottom: 40px;
-}
-.top_main_icon img {
+.main_icon {
+  background-size: cover;
   border-radius: 50%;
+  margin-right: 1%;
+  background-repeat: no-repeat;
 }
+.main_icon:nth-child(1) {
+  padding: 18%;
+  background-image: url(/images/top_main_icon1.png);
+}
+.main_icon:nth-child(2) {
+  padding: 18%;
+  background-image: url(/images/top_main_icon2.png);
+}
+.main_icon:nth-child(3) {
+  padding: 10%;
+  background-image: url(/images/top_main_icon3.png);
+  margin-right: 0;
+}
+
+
+
+@media screen and (max-width: 1024px) {
+  .top_main_box {
+    height: 360px;
+  }
+  .top_main_logo {
+    height: 75px;
+  }
+}
+
+
+@media screen and (max-width: 425px) {
+  .top_main_box {
+    width: 90%;
+    height: 450px;
+  }
+  .top_main_logo {
+    height: 100px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

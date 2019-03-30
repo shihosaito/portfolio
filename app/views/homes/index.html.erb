@@ -1,26 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 top_main">
-      <div class="top_main_mask">
+
+    <div class="top_main">
+      <div class="top_main_box">
         <div class="top_main_logo">
-          <%= image_tag 'top_main_logo.png' %>
+          <%#= image_tag 'top_main_logo.png' %>
         </div>
-        <!-- ゲストとして使う -->
         <div class="top_main_icon">
-          <div><%= link_to home_guest_path, method: :post do %><%= image_tag 'top_main_icon1.png' %><% end %></div>
-        </div>
-        <!-- ログインして使う -->
-        <div class="top_main_icon">
-          <div><%= link_to new_user_session_path do %><%= image_tag 'top_main_icon2.png' %><% end %></div>
-        </div>
-        <!-- 新規会員登録 -->
-        <div class="top_main_icon">
-          <div><%= link_to new_user_registration_path do %><%= image_tag 'top_main_icon3.png' %><% end %></div>
+          <!-- ゲストとして使う -->
+          <a class="main_icon" rel="nofollow" data-method="post" href="/home/guest"></a>
+          <!-- ログインして使う -->
+          <a class="main_icon" href="/users/sign_in"></a>
+          <!-- 新規会員登録 -->
+          <a class="main_icon" href="/users/sign_up"></a>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
 
 
 
