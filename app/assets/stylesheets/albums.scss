@@ -62,6 +62,9 @@
 }
 .album_photo img {
   align-self: center;
+  width: 305px;
+  height: 320px;
+  object-fit: cover;
 }
 .photo_show_js {
   position: fixed;
@@ -72,16 +75,19 @@
   padding: 100px;
   display: none;
   padding: 25px;
-  width: 60%;
-  height: 100%;
-  margin: 100px 30px;
+  width: 820px;
+  height: 650px;
+  margin-left: 30px;
+  padding: 160px 30px 0 30px;
   text-align: center;
 }
 .open_close_text {
-  background-color: red;
+  padding: 10px;
+  border-radius: 5px;
   text-align: center;
   flood-color: white;
   float: right;
+  background-color: #f15151;
 }
 
 /*ーーーーーーーーーーーーーーーー
