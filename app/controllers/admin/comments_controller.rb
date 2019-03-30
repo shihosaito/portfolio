@@ -5,7 +5,6 @@ class Admin::CommentsController < ApplicationController
  def create
   user = current_admin
   comment = Comment.new(comment_params)
-  comment.user_id = current_admin.id
   if comment.save
     respond_to do |f|
       f.json { render json: {comment:comment, user: user}}
