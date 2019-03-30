@@ -1,35 +1,48 @@
 
 <%= render 'homes/header' %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-
+<div class="user_show">
       <div class="user_show_title">
         <%= flash[:notice] %>
         <h2><%= @user.name %>さん ようこそ！</h2>
         <div class="user_show_title_btn">
-        <%= link_to "登録情報の編集", edit_user_registration_path(@user.id), class: "btn btn-info" %>
         </div>
       </div>
 
-      <!-- 新規アルバム作成 -->
-      <div class="new_album_box">
-        <div class="new_album_box_title">
-          <p><%= image_tag 'user_point.png', size: "25x25" %><strong>新しいアルバムを作る</strong></p>
+      <div class="user_details_box">
+        <!-- 登録者詳細 -->
+        <div class="user_details">
+          <p class="user_details_title">登録内容</p>
+          <div class="user_details_body">
+            <p>名前：<%= @user.name %></p>
+            <p>email：<%= @user.email %></p>
+            <p>登録日：<%= @user.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+          </div>
+          <div class="user_details_btn">
+            <%= link_to "登録情報の編集", edit_user_registration_path(@user.id), class: "btn btn-info btn-block" %>
+          </div>
         </div>
-        <div class="new_album_box_form">
-          <%= form_with model: @album do |f| %>
-          <%= f.label :album_name, "アルバム名（20文字以内）" %>
-          <%= f.text_field :album_name %><br>
-          <%= f.label :password, "パスワード（6文字以上）" %>&nbsp;&nbsp;
-          <%= f.password_field :password %>
-          <%= f.label :password_confirmation, "パスワード確認" %>
-          <%= f.password_field :password_confirmation %>
-          <%= f.submit "アルバム作成", class: "btn btn-success" %>
-          <% end %>
+
+        <!-- 新規アルバム作成 -->
+        <div class="new_album_box">
+          <div class="new_album_box_title">
+            <%= image_tag 'user_point.png', size: "25x25" %><p>新しいアルバムを作る</p>
+          </div>
+          <div class="new_album_box_form">
+            <%= form_with model: @album do |f| %>
+            <%= f.label :album_name, "アルバム名（20文字以内）" %>
+            <%= f.text_field :album_name, required: true, class: "form-control form-group-lg" %>
+            <%= f.label :password, "パスワード（6文字以上）" %>
+            <%= f.password_field :password, required: true, class: "form-control" %>
+            <%= f.label :password_confirmation, "パスワード確認" %>
+            <%= f.password_field :password_confirmation, required: true, class: "form-control" %>
+          </div>
+            <%= f.submit "アルバム作成", class: "btn btn-success" %>
+            <% end %>
         </div>
       </div>
+
+
       <div class="user_albums">
         <div class="user_albums_title"><p><%= image_tag 'user_point.png', size: "25x25" %><strong>アルバム 一覧</strong></div>
         <% @albums.each do |album| %>
@@ -48,6 +61,4 @@
         </div>
       <% end %>
       </div>
-    </div>
-  </div>
 </div>
