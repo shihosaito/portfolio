@@ -42,11 +42,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     user_path(resource.id)
   end
 
-  def destroy
-    resource.destroy
-    resource.update(email: resource.deleted_at.to_i.to_s + '_' + resource.email.to_s)
-  end
-
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

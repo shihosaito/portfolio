@@ -27,6 +27,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
+    user.update(email: user.deleted_at.to_i.to_s + '_' + user.email.to_s)
     redirect_to admin_users_path
     flash[:notice] = "ユーザーを削除しました"
   end
