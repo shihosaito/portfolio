@@ -1,0 +1,71 @@
+ja:
+  activerecord: &activerecord
+    models:
+      product: "商品"
+      search_form: "検索フォーム"
+    attributes:
+      product:
+        name:  "商品名"
+        price: "値段"
+        released_on: "発売日"
+      search_form:
+        q: "検索フィールド"
+
+  # activemodelの翻訳もactiverecordに記載している
+  activemodel:
+    <<: activerecord
+
+    ja:
+  activerecord: &activerecord
+    models:
+      admin:
+      album:
+      comment:
+      photo:
+      user:
+    attributes:
+      admin:
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
+        reset_password_token: "reset_password_token"
+        reset_password_sent_at: "reset_password_sent_at"
+        remember_created_at: "remember_created_at"
+        name: "名前"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      album:
+        user_id: "ユーザーid"
+        album_name: "アルバム名"
+        password_digest: "アルバムパスワード"
+        deleted_at: "削除日時"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      comment:
+        user_id: "ユーザーid"
+        album_id: "アルバムid"
+        comment_text: "コメント"
+        deleted_at: "削除日時"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      photo:
+        album_id: "アルバムid"
+        image: "イメージ"
+        image_number: "イメージ番号"
+        deleted_at: "削除日時"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+      user:
+        email: "メールアドレス"
+        encrypted_password: "パスワード"
+        reset_password_token: "reset_password_token"
+        reset_password_sent_at: "reset_password_sent_at"
+        remember_created_at: "remember_created_at"
+        name: "名前"
+        created_at: "作成日時"
+        updated_at: "更新日時"
+        guest: "ゲスト"
+        deleted_at: "削除日時"
+
+  # activemodelの翻訳もactiverecordに記載している
+  activemodel:
+    <<: activerecord
