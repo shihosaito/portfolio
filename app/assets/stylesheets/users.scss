@@ -4,29 +4,63 @@
 
 
 /*ユーザー詳細ページ*/
-
+.user_show {
+  margin: 0 auto;
+  padding: 10px;
+  width: 55%;
+}
 .user_show_title {
-  position: relative;
-  border-bottom: 2px dashed #9e9e9e;
+  border-bottom: 5px dashed #9e9e9e;
 }
 .user_show_title_btn {
   position: absolute;
   right: 0;
   bottom: 8px;
 }
+.user_details_box {
+  display: flex;
+  border-bottom: 5px dashed #9e9e9e;
+}
+.user_details {
+  width: 40%;
+  background-color: #ffffff;
+  margin: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.user_details_title {
+  font-size: 20px;
+}
+.user_details_body {
+  padding: 10px 10px 15px 10px;
+  margin-bottom: 25px;
+  font-size: 15px;
+  border-bottom: 3px #9e9e9e9e dashed;
+}
+.user_details_btn {
+
+}
+
 .new_album_box {
-  margin: 10px 0;
-  padding: 15px;
-  border-bottom: 2px dashed #9e9e9e;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  width: 60%;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 .new_album_box_title {
-  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  margin-bottom: 5px;
 }
-.new_album_box_title strong {
-  position: absolute;
-  bottom: 0;
+.new_album_box_title p {
   font-size: 18px;
 }
+.new_album_box_form {
+  margin-bottom: 10px;
+}
+
+
 .user_albums {
   margin: 10px 0;
   padding: 15px;
@@ -80,6 +114,7 @@
 
 /*ーーーーーーーーーーーーーーーーーー*/
 /*新規登録・ログイン・編集*/
+
 .sign_box {
   width: 450px;
   margin: 0 auto;
@@ -112,25 +147,6 @@
 .sign_btn {
   margin: 10px;
 }
-
-
-/*ーーーーーーーーーーーーーーーーーー*/
-
-
-/*ユーザー情報編集ページ*/
-
-.panel {
-  margin-top: 20px;
-}
-
-
-
-
-
-
-
-
-/*ーーーーーーーーーーーーーーーーーー*/
 
 
 

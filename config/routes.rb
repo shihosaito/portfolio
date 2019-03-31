@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'homes#index'
+  get 'home/about' => 'homes#about'
   post 'home/guest' => 'homes#guest'
 
   devise_for :admins, controllers: {

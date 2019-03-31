@@ -28,7 +28,7 @@
             </nav>
             <nav class="album_box">
               <li><%= album.album_name %></li>
-              <li><%= album.created_at %></li>
+              <li><%= album.created_at.strftime("%Y-%m-%d %H:%M") %></li>
             </nav>
             <%= link_to "アルバムの中を見る", admin_album_path(album.id), class: "btn btn-default" %>
           </div>
