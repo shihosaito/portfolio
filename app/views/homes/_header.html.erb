@@ -1,14 +1,16 @@
     <header>
       <div class="header">
-      <nav class="howto_site">
-        <li>使い方1</li>
-        <li>使い方2</li>
-        <li>使い方3</li>
-      </nav>
+
       <div class="main_logo">
         <%= image_tag 'main_logo.png' %>
       </div>
       <nav class="head_navi">
+        <!-- 使い方 -->
+        <li>
+          <%= link_to home_about_path do %>
+            <%= image_tag 'navi_icon7.png' %>
+          <% end %>
+        </li>
         <% if user_signed_in? %>
         <!-- アルバムを探す -->
         <li>
