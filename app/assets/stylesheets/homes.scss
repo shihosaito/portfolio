@@ -76,7 +76,31 @@
   background-image: url(/images/top_main_icon3.png);
   margin-right: 0;
 }
+.down_icon {
+  font-size: 40px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+.icon_howto_box {
+  display: flex;
+  width: 60%;
+  margin: 0 auto 80px auto;
+}
+.icon_box {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 50px;
+}
+.icon_image {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.icon_text {
 
+}
 /*ABOUTページ*/
 
 .how_to_box {
