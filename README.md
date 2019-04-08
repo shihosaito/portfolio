@@ -19,22 +19,22 @@ http://13.112.187.225/
   
 ## 使用した技術
   
-+ AWS
-    + EC2
-    + Elastic IP
-+ 画像アップロード
-    + carrierwave
-    + mini_magick
-+ ユーザー認証・登録
-    + Devise
-    + Devise Create a guest user
-+ DB
-    + mysql
-+ デザイン
-    + bootstrap
-    + flexbox
-    + font-awesome-sass
-+ 非同期通信
++ AWS  
+    + EC2  
+    + Elastic IP  
++ 画像アップロード  
+    + carrierwave  
+    + mini_magick  
++ ユーザー認証・登録  
+    + Devise  
+    + Devise Create a guest user  
++ DB  
+    + mysql  
++ デザイン  
+    + bootstrap  
+    + flexbox  
+    + font-awesome-sass  
++ 非同期通信  
 
 ## 概要
 
@@ -50,11 +50,11 @@ http://13.112.187.225/
 
 ## 機能
 
-- チャット
+- チャット  
 　- コメントの投稿・削除
 - アルバムの閲覧
 - 新規会員登録
-- アルバムの作成（会員登録済みユーザーのみ）
+- アルバムの作成（会員登録済みユーザーのみ）  
 　- 写真の投稿
 
 ## Requirement
