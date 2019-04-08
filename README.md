@@ -59,5 +59,5 @@ http://13.112.187.225/
 
 ## Requirement
 
-ruby 2.3.8
+ruby 2.3.8  
 rails 5.2.2
