@@ -1,24 +1,64 @@
-# README
+# しぇあふぉと
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+特定の人と写真を共有できるサイトです。
+http://13.112.187.225/
 
-Things you may want to cover:
+サンプルユーザー
+[email] a@a 
+[password] aaaaaa
 
-* Ruby version
+サンプルアルバム
+[ID] 50  
+[アルバム名] サンプル
+[password] 111111
 
-* System dependencies
+***Admin Account:***
 
-* Configuration
+[email] admin@gmail.com  
+[password] minmin
 
-* Database creation
+## 使用した技術
 
-* Database initialization
++ AWS
+    + EC2
+    + Elastic IP
++ 画像アップロード
+    + carrierwave
+    + mini_magick
++ ユーザー認証・登録
+    + Devise
+    + Devise Create a guest user
++ DB
+    + mysql
++ デザイン
+    + bootstrap
+    + flexbox
+    + font-awesome-sass
++ 非同期通信
 
-* How to run the test suite
+## 概要
 
-* Services (job queues, cache servers, search engines, etc.)
+両親や職場の上司から写真を共有する際に、
+  「クリックするところが多すぎて、触るのが怖い」
+  「会員登録はハードルが高い」
+などと言われた経験があり、ネットに不慣れな世代でも簡単に利用できるサイトは作れないだろうかと思い作成しました。
 
-* Deployment instructions
+"ID" "アルバム名" "パスワード"の３つがあれば、誰でも会員登録無しに写真を見ることができ、
+チャット機能も会員登録無しで利用できます。
 
-* ...
+ネットを難しいと感じている方々が迷わないように、極力シンプルなサイトとなっており、
+年代を問わず利用できる写真共有サービスです。
+
+## 機能
+
+- チャット
+　- コメントの投稿・削除
+- アルバムの閲覧
+- 新規会員登録
+- アルバムの作成（会員登録済みユーザーのみ）
+　- 写真の投稿
+
+## Requirement
+
+ruby 2.5.3  
+rails 5.2.2
