@@ -3,14 +3,14 @@
 特定の人と写真を共有できるサイトです。
 http://13.112.187.225/
 
-サンプルユーザー
-[email] a@a 
-[password] aaaaaa
+サンプルユーザー  
+[email] a@a  
+[password] aaaaaa  
 
-サンプルアルバム
+サンプルアルバム  
 [ID] 50  
-[アルバム名] サンプル
-[password] 111111
+[アルバム名] サンプル  
+[password] 111111  
 
 ***Admin Account:***
 
